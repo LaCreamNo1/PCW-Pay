@@ -110,15 +110,9 @@
 
       <!-- Área superior (ilustración) -->
       <div class="hero" aria-hidden="false">
-        <!-- Reemplaza la siguiente imagen con una ilustración de bienvenida o app-splash.
-             Recomendado: imagen horizontal 1200x700 (optimizada para web, .webp o .jpg)
-             Ejemplo de archivo: assets/hero-welcome.jpg -->
         <img src="imagenes/Fondo.jpg" alt="BIENVENIDOS">
-
-        <!-- Logo sobrepuesto: pon aquí el logo de la app (formato PNG con fondo transparente).
-             Recomendado: 512x512 (se redimensiona automáticamente). -->
         <div class="logo" aria-hidden="true">
-          <img src="imagenes/Logo1.jpg" alt="PCW">
+          <img src="imagenes/Logo1.png" alt="PCW">
         </div>
       </div>
 
@@ -130,8 +124,8 @@
 
       <!-- Llamadas a la acción -->
       <div class="cta">
-        <button class="btn btn-primary" onclick="handleGetStarted()" aria-label="Comenzar">Comenzar</button>
-        <button class="btn btn-ghost" onclick="handleSignIn()" aria-label="Iniciar sesión">Iniciar sesión</button>
+        <button class="btn btn-primary" onclick="window.location.href='registro.php'">Comenzar</button>
+        <button class="btn btn-ghost" onclick="window.location.href='login.php'">Iniciar sesión</button>
       </div>
 
       <!-- Opciones alternativas y redes sociales -->
@@ -140,7 +134,7 @@
         <div class="socials" role="group" aria-label="Iniciar sesión con redes sociales">
           <button aria-label="Iniciar con Google"><img src="imagenes/g.png"></button>
           <button aria-label="Iniciar con Apple"><img src="imagenes/a.png"></button>
-          <button aria-label="Iniciar con Facebook"><img src="imagenes/f.jpg"></button>
+          <button aria-label="Iniciar con Facebook"><img src="imagenes/f.png"></button>
         </div>
       </div>
 
@@ -154,12 +148,12 @@
   <script>
     /* Funciones de ejemplo — sustituir por la lógica real de la app */
     function handleGetStarted(){
-      // Redirigir a onboarding o registro
-      alert('Comenzar — aquí iría el flujo de onboarding.');
+      // Abrir pantalla de comenzar
+
     }
     function handleSignIn(){
       // Abrir pantalla de login
-      alert('Iniciar sesión — aquí iría el formulario de login.');
+
     }
   </script>
 </body>
