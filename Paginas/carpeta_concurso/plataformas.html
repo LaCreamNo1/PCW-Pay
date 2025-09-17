@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>PCW</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: violet;
+        }
+        h1 {
+            margin-top: 30px;
+            color: purple;
+        }
+        .contenedor-imagenes {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50pX;
+        }
+        .contenedor-imagenes a img {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px pink
+            (0,0,0,0.2);
+            cursor: pointer;
+        }
+        .contenedor-imagenes a img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px blue
+            (0,0,0,0.4);
+        }
+    </style>
+</head>
+<body>
+    <h1>PLATFORM CARD WALLET</h1>
+
+    <div class="contenedor-imagenes">
+        <!-- Imagen 1 → Audio -->
+        <a href="pagina_audio.html">
+            <img src="images.jpeg" alt="Audio">
+        </a>
+
+        <!-- Imagen 2 → Video -->
+        <a href="pagina_video.html">
+            <img src="plataformas-streaming-desaparecido-hbo-max.jpg" alt="Video">
+        </a>
+
+        <!-- Imagen 3 → Juegos -->
+        <a href="pagina_juegos.html">
+            <img src="the-best-video-game-controllers_eb53.jpg" alt="Juegos">
+        </a>
+    </div>
+</body>
+</html>

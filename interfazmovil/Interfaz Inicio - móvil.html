@@ -1,25 +1,23 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Interfaz de Inicio - App Móvil</title>
+  <title>Platform Card Wallet - Mobile App</title>
   <style>
     :root{
-      --bg-gradient-1: #6dd5ed; /* azul claro */
-      --bg-gradient-2: #2193b0; /* azul profundo */
-      --accent: #ff7a59; /* naranja-acento */
+      --bg-gradient-1: #6dd5ed;
+      --bg-gradient-2: #2193b0;
+      --accent: #ff7a59;
       --card-bg: rgba(255,255,255,0.95);
       --muted: #6b7280;
       --glass: rgba(255,255,255,0.06);
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     }
 
-    /* Reseteo básico */
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
 
-    /* Contenedor principal ocupa toda la pantalla del móvil */
     .screen{
       min-height:100vh;
       display:flex;
@@ -27,14 +25,11 @@
       justify-content:center;
       padding:20px;
       background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.08), transparent 10%), linear-gradient(135deg,var(--bg-gradient-1),var(--bg-gradient-2));
-      background-size:cover;
-      background-repeat:no-repeat;
     }
 
-    /* Card central */
     .card{
       width:100%;
-      max-width:420px; /* tamaño sugerido para pantallas grandes de móvil */
+      max-width:420px;
       border-radius:18px;
       background:var(--card-bg);
       box-shadow:0 10px 30px rgba(16,24,40,0.25);
@@ -45,7 +40,6 @@
       backdrop-filter: blur(6px);
     }
 
-    /* Zona visual superior donde irá la imagen/ilustración */
     .hero{
       height:220px;
       border-radius:12px;
@@ -57,9 +51,8 @@
       justify-content:center;
     }
 
-    .hero img{width:100%;height:100%;object-fit:cover;display:block}
+    .hero img{width:100%;height:100%;object-fit:cover}
 
-    /* Logo circular */
     .logo{
       width:92px;height:92px;border-radius:26px;
       display:flex;align-items:center;justify-content:center;
@@ -70,14 +63,16 @@
     h1{font-size:20px;color:#0f172a}
     p.lead{color:var(--muted);font-size:14px}
 
-    .cta{
-      display:flex;gap:12px;flex-direction:column;
-    }
+    .cta{display:flex;gap:12px;flex-direction:column}
 
     .btn{
       display:inline-flex;align-items:center;justify-content:center;
-      gap:10px;padding:14px;border-radius:12px;border:0;font-weight:600;font-size:16px;cursor:pointer;
+      gap:10px;padding:14px;border-radius:12px;border:0;
+      font-weight:600;font-size:16px;cursor:pointer;
+      transition: all 0.25s ease-in-out;
     }
+    .btn:hover{transform:scale(1.05);box-shadow:0 8px 20px rgba(0,0,0,0.15)}
+    .btn:active{transform:scale(0.95)}
 
     .btn-primary{background:linear-gradient(90deg,var(--accent),#ff9966);color:white;box-shadow:0 6px 18px rgba(255,122,89,0.22)}
     .btn-ghost{background:transparent;border:1px solid rgba(15,23,42,0.06);color:var(--muted)}
@@ -85,76 +80,67 @@
     .small-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted)}
 
     .socials{display:flex;gap:8px}
-    .socials button{padding:10px;border-radius:10px;border:1px solid rgba(15,23,42,0.05);background:transparent}
+    .socials button{
+      padding:10px;border-radius:10px;
+      border:1px solid rgba(15,23,42,0.05);background:transparent;
+      transition:all 0.25s ease;
+    }
+    .socials button:hover{transform:scale(1.15);box-shadow:0 6px 14px rgba(0,0,0,0.15)}
+    .socials button:active{transform:scale(0.9)}
 
-    /* Footer */
-    .footer{font-size:12px;color:var(--muted);text-align:center;padding-top:6px}
+    .footer{
+      font-size:12px;color:var(--muted);text-align:center;padding-top:6px
+    }
+    .footer a{
+      color:inherit;text-decoration:underline;
+      transition:color 0.2s, transform 0.2s;
+    }
+    .footer a:hover{color:var(--accent);transform:scale(1.05)}
 
-    /* Ajustes responsivos */
     @media (max-width:380px){
       .hero{height:180px}
       .logo{width:76px;height:76px}
       h1{font-size:18px}
       .btn{padding:12px;font-size:15px}
     }
-
-    @media (min-height:900px){
-      .card{padding:28px}
-      .hero{height:260px}
-    }
   </style>
 </head>
 <body>
   <main class="screen">
-    <section class="card" role="main" aria-labelledby="app-title">
+    <section class="card">
 
-      <!-- Área superior (ilustración) -->
-      <div class="hero" aria-hidden="false">
-        <img src="imagenes/Fondo.jpg" alt="BIENVENIDOS">
-        <div class="logo" aria-hidden="true">
+      <div class="hero">
+        <img src="imagenes/Fondo.jpg" alt="Welcome">
+        <div class="logo">
           <img src="imagenes/Logo1.png" alt="PCW">
         </div>
       </div>
 
-      <!-- Texto principal -->
       <div>
-        <h1 id="app-title">PLATFORM CARD WALLET</h1>
-        <p class="lead">Bienvenido a Platform Card Wallet, la plataforma que reúne todas tus tarjetas digitales en un solo lugar, donde puedes adquirirlas de manera fácil, práctica y segura.</p>
+        <h1>PLATFORM CARD WALLET</h1>
+        <p class="lead">Welcome to Platform Card Wallet, the app that gathers all your digital cards in one place, where you can purchase them easily, securely, and conveniently.</p>
       </div>
 
-      <!-- Llamadas a la acción -->
       <div class="cta">
-        <button class="btn btn-primary" onclick="window.location.href='registro.php'">Comenzar</button>
-        <button class="btn btn-ghost" onclick="window.location.href='login.php'">Iniciar sesión</button>
+        <button class="btn btn-primary" onclick="window.location.href='registro.php'">Get Started</button>
+        <button class="btn btn-ghost" onclick="window.location.href='login.php'">Sign In</button>
       </div>
 
-      <!-- Opciones alternativas y redes sociales -->
       <div class="small-row" style="margin-top:6px">
-        <span>O inicia con</span>
-        <div class="socials" role="group" aria-label="Iniciar sesión con redes sociales">
-          <button aria-label="Iniciar con Google"><img src="imagenes/g.png"></button>
-          <button aria-label="Iniciar con Apple"><img src="imagenes/a.png"></button>
-          <button aria-label="Iniciar con Facebook"><img src="imagenes/f.png"></button>
+        <span>Or sign in with</span>
+        <div class="socials">
+          <!-- Social login simulation with redirect back to this page -->
+          <button onclick="window.location.href='https://accounts.google.com/o/oauth2/auth?redirect_uri=index.html'"><img src="imagenes/g.png" alt="Google"></button>
+          <button onclick="window.location.href='https://appleid.apple.com/auth/authorize?redirect_uri=index.html'"><img src="imagenes/a.png" alt="Apple"></button>
+          <button onclick="window.location.href='https://www.facebook.com/v9.0/dialog/oauth?redirect_uri=index.html'"><img src="imagenes/f.png" alt="Facebook"></button>
         </div>
       </div>
 
       <div class="footer">
-        <a href="#" style="color:inherit;text-decoration:underline;">Términos y condiciones</a> · <a href="#" style="color:inherit;text-decoration:underline;">Política de privacidad</a>
+        <a href="terminos.html">Terms and Conditions</a> · <a href="privacidad.html">Privacy Policy</a>
       </div>
 
     </section>
   </main>
-
-  <script>
-    /* Funciones de ejemplo — sustituir por la lógica real de la app */
-    function handleGetStarted(){
-      // Abrir pantalla de comenzar
-
-    }
-    function handleSignIn(){
-      // Abrir pantalla de login
-
-    }
-  </script>
 </body>
 </html>
