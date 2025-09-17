@@ -1,0 +1,36 @@
+<?php
+require_once "Usuario.php";
+
+$usuario = new Usuario();
+
+// Guardar un usuario (opcional para prueba)
+//$usuario->guardar("Ana López", "ana@example.com", "12345");
+
+// Obtener usuarios
+$usuarios = $usuario->listar();
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Usuarios</title>
+</head>
+<body>
+    <h2>Lista de Usuarios</h2>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+        </tr>
+        <?php foreach ($usuarios as $u): ?>
+            <tr>
+                <td><?= $u['id'] ?></td>
+                <td><?= $u['nombre'] ?></td>
+                <td><?= $u['correo'] ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+</body>
+</html>
