@@ -1,50 +1,69 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Página Principal</title>
+    <title>Inicio de Sesión</title>
     <style>
         body {
+            background-color: #f0f0f0; /* color de fondo */
             font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
             text-align: center;
-            margin-top: 50px;
         }
-        h1 {
-            margin-bottom: 40px;
+
+        .login-container h2 {
+            margin-bottom: 20px;
         }
-        .btn-imagen {
-            display: inline-block;
-            margin: 15px;
+
+        .login-container input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
         }
-        .btn-imagen img {
-            width: 150px;   /* tamaño del botón */
-            height: 150px;
-            border-radius: 12px;
-            transition: 0.3s;
+
+        .login-container img.button-img {
+            width: 150px; /* tamaño del botón */
+            margin: 10px;
             cursor: pointer;
-        }
-        .btn-imagen img:hover {
-            transform: scale(1.1); /* efecto al pasar el mouse */
         }
     </style>
 </head>
 <body>
-    <h1>Menú Principal</h1>
+    <div class="login-container">
+        <h2>Inicio de Sesión</h2>
+        <input type="email" placeholder="Correo electrónico" id="email"><br>
+        <input type="password" placeholder="Contraseña" id="password"><br>
+        
+        <!-- Botones como imágenes -->
+        <img src="iniciar_sesion.png" class="button-img" alt="Iniciar Sesión" onclick="iniciarSesion()">
+        <img src="crear_cuenta.png" class="button-img" alt="Crear Cuenta" onclick="crearCuenta()">
+    </div>
 
-    <!-- Botón 1 -->
-    <a href="pagina1.html" class="btn-imagen">
-        <img src="img1.jpg" alt="Botón 1">
-    </a>
+    <script>
+        function iniciarSesion() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            alert("Iniciando sesión con:\nCorreo: " + email + "\nContraseña: " + password);
+            // Aquí podrías redirigir a otra página o hacer validación
+        }
 
-    <!-- Botón 2 -->
-    <a href="pagina2.html" class="btn-imagen">
-        <img src="img2.jpg" alt="Botón 2">
-    </a>
-
-    <!-- Botón 3 -->
-    <a href="pagina3.html" class="btn-imagen">
-        <img src="img3.jpg" alt="Botón 3">
-    </a>
-
+        function crearCuenta() {
+            alert("Redirigiendo a crear cuenta...");
+            // Aquí podrías abrir la página de registro
+        }
+    </script>
 </body>
 </html>
