@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>PLATFORM CARD WALLET  </title>
+    <style>
+        .btn-imagen {
+            border: none;
+            background: none;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .btn-imagen img {
+            width: 150px;   /* tamaño de la imagen */
+            height: 150px;  /* puedes ajustarlo */
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+        .btn-imagen img:hover {
+            transform: scale(1.1); /* efecto al pasar el mouse */
+        }
+    </style>
+</head>
+<body>
+    <h2>Selecciona una opción</h2>
+
+    <!-- Botón 1 -->
+    <form action="pagina1.php" method="get">
+        <button type="submit" class="btn-imagen">
+            <img src="imagenes/img1.jpg" alt="Opción 1">
+        </button>
+    </form>
+
+    <!-- Botón 2 -->
+    <form action="pagina2.php" method="get">
+        <button type="submit" class="btn-imagen">
+            <img src="imagenes/img2.jpg" alt="Opción 2">
+        </button>
+    </form>
+
+    <!-- Botón 3 -->
+    <form action="pagina3.php" method="get">
+        <button type="submit" class="btn-imagen">
+            <img src="imagenes/img3.jpg" alt="Opción 3">
+        </button>
+    </form>
+
+</body>
+</html>
