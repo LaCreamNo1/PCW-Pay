@@ -2,19 +2,26 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>PLATFORM CARD WALLET  </title>
+    <title>Página Principal</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            margin-bottom: 40px;
+        }
         .btn-imagen {
-            border: none;
-            background: none;
-            cursor: pointer;
-            margin: 10px;
+            display: inline-block;
+            margin: 15px;
         }
         .btn-imagen img {
-            width: 150px;   /* tamaño de la imagen */
-            height: 150px;  /* puedes ajustarlo */
-            border-radius: 10px;
+            width: 150px;   /* tamaño del botón */
+            height: 150px;
+            border-radius: 12px;
             transition: 0.3s;
+            cursor: pointer;
         }
         .btn-imagen img:hover {
             transform: scale(1.1); /* efecto al pasar el mouse */
@@ -22,28 +29,22 @@
     </style>
 </head>
 <body>
-    <h2>Selecciona una opción</h2>
+    <h1>Menú Principal</h1>
 
     <!-- Botón 1 -->
-    <form action="pagina1.php" method="get">
-        <button type="submit" class="btn-imagen">
-            <img src="imagenes/img1.jpg" alt="Opción 1">
-        </button>
-    </form>
+    <a href="pagina1.html" class="btn-imagen">
+        <img src="img1.jpg" alt="Botón 1">
+    </a>
 
     <!-- Botón 2 -->
-    <form action="pagina2.php" method="get">
-        <button type="submit" class="btn-imagen">
-            <img src="imagenes/img2.jpg" alt="Opción 2">
-        </button>
-    </form>
+    <a href="pagina2.html" class="btn-imagen">
+        <img src="img2.jpg" alt="Botón 2">
+    </a>
 
     <!-- Botón 3 -->
-    <form action="pagina3.php" method="get">
-        <button type="submit" class="btn-imagen">
-            <img src="imagenes/img3.jpg" alt="Opción 3">
-        </button>
-    </form>
+    <a href="pagina3.html" class="btn-imagen">
+        <img src="img3.jpg" alt="Botón 3">
+    </a>
 
 </body>
 </html>
