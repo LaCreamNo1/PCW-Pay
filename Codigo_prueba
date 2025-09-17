@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hola Mundo en JavaScript</title>
+</head>
+<body>
+    <h1 id="saludo"></h1>
+
+    <script>
+        // Mostrar "Hola Mundo" en la consola
+        console.log("Hola Mundo");
+
+        // Mostrar "Hola Mundo" en la página web
+        document.getElementById("saludo").innerText = "Hola Mundo";
+    </script>
+</body>
+</html>
