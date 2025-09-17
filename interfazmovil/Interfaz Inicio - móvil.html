@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Interfaz de Inicio - App Móvil</title>
+  <title>Platform Card Wallet - Mobile App</title>
   <style>
     :root{
-      --bg-gradient-1: #6dd5ed; /* azul claro */
-      --bg-gradient-2: #2193b0; /* azul profundo */
-      --accent: #ff7a59; /* naranja-acento */
+      --bg-gradient-1: #6dd5ed;
+      --bg-gradient-2: #2193b0;
+      --accent: #ff7a59;
       --card-bg: rgba(255,255,255,0.95);
       --muted: #6b7280;
       --glass: rgba(255,255,255,0.06);
@@ -110,7 +110,7 @@
     <section class="card">
 
       <div class="hero">
-        <img src="imagenes/Fondo.jpg" alt="Bienvenidos">
+        <img src="imagenes/Fondo.jpg" alt="Welcome">
         <div class="logo">
           <img src="imagenes/Logo1.png" alt="PCW">
         </div>
@@ -118,25 +118,26 @@
 
       <div>
         <h1>PLATFORM CARD WALLET</h1>
-        <p class="lead">Bienvenido a Platform Card Wallet, la plataforma que reúne todas tus tarjetas digitales en un solo lugar, donde puedes adquirirlas de manera fácil, práctica y segura.</p>
+        <p class="lead">Welcome to Platform Card Wallet, the app that gathers all your digital cards in one place, where you can purchase them easily, securely, and conveniently.</p>
       </div>
 
       <div class="cta">
-        <button class="btn btn-primary" onclick="window.location.href='registro.php'">Comenzar</button>
-        <button class="btn btn-ghost" onclick="window.location.href='login.php'">Iniciar sesión</button>
+        <button class="btn btn-primary" onclick="window.location.href='registro.php'">Get Started</button>
+        <button class="btn btn-ghost" onclick="window.location.href='login.php'">Sign In</button>
       </div>
 
       <div class="small-row" style="margin-top:6px">
-        <span>O inicia con</span>
+        <span>Or sign in with</span>
         <div class="socials">
-          <button aria-label="Google"><img src="imagenes/g.png"></button>
-          <button aria-label="Apple"><img src="imagenes/a.png"></button>
-          <button aria-label="Facebook"><img src="imagenes/f.png"></button>
+          <!-- Social login simulation with redirect back to this page -->
+          <button onclick="window.location.href='https://accounts.google.com/o/oauth2/auth?redirect_uri=index.html'"><img src="imagenes/g.png" alt="Google"></button>
+          <button onclick="window.location.href='https://appleid.apple.com/auth/authorize?redirect_uri=index.html'"><img src="imagenes/a.png" alt="Apple"></button>
+          <button onclick="window.location.href='https://www.facebook.com/v9.0/dialog/oauth?redirect_uri=index.html'"><img src="imagenes/f.png" alt="Facebook"></button>
         </div>
       </div>
 
       <div class="footer">
-        <a href="terminos.html">Términos y condiciones</a> · <a href="privacidad.html">Política de privacidad</a>
+        <a href="terms.html">Terms and Conditions</a> · <a href="privacy.html">Privacy Policy</a>
       </div>
 
     </section>
