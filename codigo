@@ -1,3 +1,36 @@
-eSCRIBIENDO EN EL CODIGO ESTA COSA
-AQUI HAY UN CAMBIO
-cambio de alfonso
+<?php
+class Usuario {
+    private $conn;
+
+    public function __construct() {
+        // Conexión a MySQL
+        $host = "localhost";
+        $usuario = "root";
+        $clave = "";
+        $bd = "mi_base";
+
+        $this->conn = new mysqli($host, $usuario, $clave, $bd);
+
+        if ($this->conn->connect_error) {
+            die("Error de conexión: " . $this->conn->connect_error);
+        }
+    }
+
+    // Guardar un usuario
+    public function guardar($nombre, $correo, $contrasena) {
+        // Encriptar contraseña
+        $pass_segura = password_hash($contrasena, PASSWORD_DEFAULT);
+
+        $stmt = $this->conn->prepare("INSERT INTO usuarios (nombre, correo, contrasena) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $nombre, $correo, $pass_segura);
+        return $stmt->execute();
+    }
+
+    // Obtener todos los usuarios
+    public function listar() {
+        $resultado = $this->conn->query("SELECT id, nombre, correo FROM usuarios");
+        return $resultado->fetch_all(MYSQLI_ASSOC);
+    }
+}
+?>
+
