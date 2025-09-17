@@ -51,19 +51,19 @@
         <img src="iniciar_sesion.png" class="button-img" alt="Iniciar Sesión" onclick="iniciarSesion()">
         <img src="crear_cuenta.png" class="button-img" alt="Crear Cuenta" onclick="crearCuenta()">
     </div>
+<script>
+    function iniciarSesion() {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
 
-    <script>
-        function iniciarSesion() {
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            alert("Iniciando sesión con:\nCorreo: " + email + "\nContraseña: " + password);
-            // Aquí podrías redirigir a otra página o hacer validación
-        }
+        // Redirige a plataformas.html
+        window.location.href = "plataformas.html";
+    }
 
-        function crearCuenta() {
-            alert("Redirigiendo a crear cuenta...");
-            // Aquí podrías abrir la página de registro
-        }
-    </script>
+    function crearCuenta() {
+        // Redirige a la página de crear cuenta (puedes cambiar el nombre si la tienes)
+        window.location.href = "crear_cuenta.html";
+    }
+</script>
 </body>
 </html>
