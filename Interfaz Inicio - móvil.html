@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Interfaz de Inicio - App Móvil</title>
+  <style>
+    :root{
+      --bg-gradient-1: #6dd5ed; /* azul claro */
+      --bg-gradient-2: #2193b0; /* azul profundo */
+      --accent: #ff7a59; /* naranja-acento */
+      --card-bg: rgba(255,255,255,0.95);
+      --muted: #6b7280;
+      --glass: rgba(255,255,255,0.06);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+
+    /* Reseteo básico */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+
+    /* Contenedor principal ocupa toda la pantalla del móvil */
+    .screen{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.08), transparent 10%), linear-gradient(135deg,var(--bg-gradient-1),var(--bg-gradient-2));
+      background-size:cover;
+      background-repeat:no-repeat;
+    }
+
+    /* Card central */
+    .card{
+      width:100%;
+      max-width:420px; /* tamaño sugerido para pantallas grandes de móvil */
+      border-radius:18px;
+      background:var(--card-bg);
+      box-shadow:0 10px 30px rgba(16,24,40,0.25);
+      padding:22px;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      backdrop-filter: blur(6px);
+    }
+
+    /* Zona visual superior donde irá la imagen/ilustración */
+    .hero{
+      height:220px;
+      border-radius:12px;
+      overflow:hidden;
+      position:relative;
+      background:linear-gradient(180deg, rgba(0,0,0,0.03), rgba(0,0,0,0.02));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .hero img{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* Logo circular */
+    .logo{
+      width:92px;height:92px;border-radius:26px;
+      display:flex;align-items:center;justify-content:center;
+      background:var(--glass);position:absolute;top:16px;left:16px;border:1px solid rgba(255,255,255,0.08);
+    }
+    .logo img{width:68px;height:68px;object-fit:contain}
+
+    h1{font-size:20px;color:#0f172a}
+    p.lead{color:var(--muted);font-size:14px}
+
+    .cta{
+      display:flex;gap:12px;flex-direction:column;
+    }
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      gap:10px;padding:14px;border-radius:12px;border:0;font-weight:600;font-size:16px;cursor:pointer;
+    }
+
+    .btn-primary{background:linear-gradient(90deg,var(--accent),#ff9966);color:white;box-shadow:0 6px 18px rgba(255,122,89,0.22)}
+    .btn-ghost{background:transparent;border:1px solid rgba(15,23,42,0.06);color:var(--muted)}
+
+    .small-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted)}
+
+    .socials{display:flex;gap:8px}
+    .socials button{padding:10px;border-radius:10px;border:1px solid rgba(15,23,42,0.05);background:transparent}
+
+    /* Footer */
+    .footer{font-size:12px;color:var(--muted);text-align:center;padding-top:6px}
+
+    /* Ajustes responsivos */
+    @media (max-width:380px){
+      .hero{height:180px}
+      .logo{width:76px;height:76px}
+      h1{font-size:18px}
+      .btn{padding:12px;font-size:15px}
+    }
+
+    @media (min-height:900px){
+      .card{padding:28px}
+      .hero{height:260px}
+    }
+  </style>
+</head>
+<body>
+  <main class="screen">
+    <section class="card" role="main" aria-labelledby="app-title">
+
+      <!-- Área superior (ilustración) -->
+      <div class="hero" aria-hidden="false">
+        <!-- Reemplaza la siguiente imagen con una ilustración de bienvenida o app-splash.
+             Recomendado: imagen horizontal 1200x700 (optimizada para web, .webp o .jpg)
+             Ejemplo de archivo: assets/hero-welcome.jpg -->
+        <img src="assets/hero-welcome.jpg" alt="Ilustración de bienvenida de la app">
+
+        <!-- Logo sobrepuesto: pon aquí el logo de la app (formato PNG con fondo transparente).
+             Recomendado: 512x512 (se redimensiona automáticamente). -->
+        <div class="logo" aria-hidden="true">
+          <img src="assets/logo.png" alt="Logo de la app">
+        </div>
+      </div>
+
+      <!-- Texto principal -->
+      <div>
+        <h1 id="app-title">Nombre de la App</h1>
+        <p class="lead">Bienvenido — una breve frase que describa el valor de la aplicación. Ej: "Organiza tus tareas, recibe recordatorios y alcanza tus metas".</p>
+      </div>
+
+      <!-- Llamadas a la acción -->
+      <div class="cta">
+        <button class="btn btn-primary" onclick="handleGetStarted()" aria-label="Comenzar">Comenzar</button>
+        <button class="btn btn-ghost" onclick="handleSignIn()" aria-label="Iniciar sesión">Iniciar sesión</button>
+      </div>
+
+      <!-- Opciones alternativas y redes sociales -->
+      <div class="small-row" style="margin-top:6px">
+        <span>O inicia con</span>
+        <div class="socials" role="group" aria-label="Iniciar sesión con redes sociales">
+          <button aria-label="Iniciar con Google">G</button>
+          <button aria-label="Iniciar con Apple"></button>
+          <button aria-label="Iniciar con Facebook">f</button>
+        </div>
+      </div>
+
+      <div class="footer">
+        <a href="#" style="color:inherit;text-decoration:underline;">Términos y condiciones</a> · <a href="#" style="color:inherit;text-decoration:underline;">Política de privacidad</a>
+      </div>
+
+    </section>
+  </main>
+
+  <script>
+    /* Funciones de ejemplo — sustituir por la lógica real de la app */
+    function handleGetStarted(){
+      // Redirigir a onboarding o registro
+      alert('Comenzar — aquí iría el flujo de onboarding.');
+    }
+    function handleSignIn(){
+      // Abrir pantalla de login
+      alert('Iniciar sesión — aquí iría el formulario de login.');
+    }
+  </script>
+</body>
+</html>
