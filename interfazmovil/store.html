@@ -190,8 +190,8 @@
   let cart = [];
 
   // Cuentas fijas
-  const receiverUrl = "https://ilp.interledger-test.dev/peperecibe";       // Quien recibe el dinero
-  const intermediaryUrl = "https://ilp.interledger-test.dev/c884c441"; // Intermediario
+  const receiverUrl = "https://ilp.interledger-test.dev/peperecibe";       // Receptor final
+  const intermediaryUrl = "https://ilp.interledger-test.dev/c884c441";    // Intermediario
 
   function selectAmount(name, amounts){
     let choice = prompt(`Select amount for ${name}: ${amounts.join(', ')}`);
@@ -228,12 +228,11 @@
     document.getElementById('cart-modal').style.display='none';
   }
 
-  function checkout(){
-    if(cart.length===0){alert("Your cart is empty!");return;}
+  async function checkout(){
+    if(cart.length===0){alert("Your cart is empty!"); return;}
 
-    // Solo pedir URL del comprador (emisor)
+    // Pedir URL del comprador (emisor)
     let buyerUrl = prompt("Please enter your Digital Wallet URL to pay:");
-
     if(!buyerUrl || buyerUrl.trim() === ""){
       alert("Payment canceled. Buyer URL is required.");
       return;
@@ -242,22 +241,43 @@
     // Calcular total de la compra
     let total = cart.reduce((sum, item)=> sum + item.amount, 0);
 
-    // Confirmación final de la compra
+    // Confirmación de pago
     let confirmPay = confirm(`You are about to pay $${total} via your wallet.\nDo you accept?`);
+    if(!confirmPay){
+      alert("Payment canceled by buyer.");
+      return;
+    }
 
-    if(confirmPay){
-      // Flujo de pago: comprador -> intermediario -> receptor
-      let paymentUrl = `${buyerUrl}?intermediary=${encodeURIComponent(intermediaryUrl)}&receiver=${encodeURIComponent(receiverUrl)}&amount=${total}`;
+    // Mostrar pantalla de procesamiento
+    document.getElementById('catalog-screen').style.display = 'none';
+    document.getElementById('processing-screen').style.display = 'flex';
 
-      alert("Redirecting to payment gateway...\n" + paymentUrl);
-      window.location.href = paymentUrl;
+    try {
+      // 1️⃣ Enviar al intermediario
+      await fetch(intermediaryUrl, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({from: buyerUrl, to: receiverUrl, amount})
+      });
+
+      // 2️⃣ Enviar al receptor
+      await fetch(receiverUrl, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({from: intermediaryUrl, amount})
+      });
+
+      alert("✅ Payment completed successfully!");
 
       // Vaciar carrito
       cart = [];
       updateCart();
-      closeCart();
-    }else{
-      alert("Payment canceled by buyer.");
+    } catch(err){
+      alert("❌ Payment failed: " + err);
+    } finally {
+      // Ocultar pantalla de procesamiento
+      document.getElementById('processing-screen').style.display = 'none';
+      document.getElementById('catalog-screen').style.display = 'flex';
       closeCart();
     }
   }
