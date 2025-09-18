@@ -1,111 +1,28 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
+ <link rel="icon" type="image/jpeg" href="logo.jpeg">
 <meta charset="UTF-8">
 <title>GAMES</title>
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        background-color: #87CEEB;
-        display: flex;
-    }
-
-    /* Panel de imágenes a la izquierda */
-   .image-panel {
-    width: 250px;
-    height: 100vh;
-    background-color:  #FFB347; /* peachpuff: durazno claro que combina con celeste */
-    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-}
-
-    .image-panel img {
-        width: 100%;
-        border-radius: 8px;
-        margin-bottom: 10px;
-        display: none; /* Oculto por defecto */
-    }
-
-    /* Contenedor del formulario */
-    .form-container-wrapper {
-        flex: 1; /* Ocupa todo el espacio restante */
-        display: flex;
-        justify-content: center; /* Centrar horizontalmente */
-        align-items: center;     /* Centrar verticalmente */
-        padding: 20px;
-    }
-
-    .form-container {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        width: 400px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    }
-
-    .form-container label {
-        display: block;
-        margin-top: 10px;
-        font-weight: bold;
-    }
-
-    .form-container input, 
-    .form-container select {
-        width: 100%;
-        padding: 8px;
-        margin-top: 5px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-    }
-
-    .form-container button {
-        margin-top: 15px;
-        padding: 10px;
-        width: 100%;
-        border: none;
-        border-radius: 5px;
-        background-color: red;
-        color: white;
-        font-size: 16px;
-        cursor: pointer;
-        transition: transform 0.3s;
-    }
-
-    .form-container button:hover {
-        transform: scale(1.05);
-    }
-
-    @media(max-width:900px){
-        body {
-            flex-direction: column;
-            align-items: center;
-        }
-        .image-panel {
-            width: 90%;
-            height: 300px;
-            margin-bottom: 20px;
-        }
-        .form-container-wrapper {
-            width: 90%;
-            justify-content: center;
-        }
-        .form-container {
-            width: 100%;
-        }
-    }
+    body { font-family: Arial, sans-serif; margin:0; background-color: #FF8C42; display:flex; position: relative; }
+    .image-panel { width: 250px; height:100vh; background-color:#FFB347; box-shadow:2px 0 10px rgba(0,0,0,0.2); overflow:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:10px; }
+    .image-panel img { width:100%; border-radius:8px; margin-bottom:10px; display:none; }
+    .form-container-wrapper { flex:1; display:flex; justify-content:center; align-items:center; padding:20px; }
+    .form-container { background-color:#fff; padding:20px; border-radius:10px; width:400px; box-shadow:0 0 10px rgba(0,0,0,0.2); }
+    .form-container label { display:block; margin-top:10px; font-weight:bold; }
+    .form-container select { width:100%; padding:8px; margin-top:5px; border-radius:5px; border:1px solid #ccc; }
+    .form-container button { margin-top:15px; padding:10px; width:100%; border:none; border-radius:5px; background-color:red; color:white; font-size:16px; cursor:pointer; transition: transform 0.3s; }
+    .form-container button:hover { transform: scale(1.05); }
+    .imagen-esquina { position:fixed; bottom:20px; right:20px; width:100px; height:auto; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.3); z-index:1000; }
+    .cart-container { position: fixed; right: 20px; top: 80px; display: flex; flex-direction: column; gap: 15px; z-index: 1000; }
+    .cart-button { padding: 8px 12px; background-color: green; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    @media(max-width:900px){ body { flex-direction:column; align-items:center; } .image-panel { width:90%; height:300px; margin-bottom:20px; } .form-container-wrapper { width:90%; justify-content:center; } .form-container { width:100%; } }
 </style>
 </head>
 <body>
 
-<!-- Panel de imágenes a la izquierda -->
 <div class="image-panel">
-   <img src="spotify.jpeg" alt="Spotify"> 
+    <img src="spotify.jpeg" alt="Spotify">
     <img src="itunes.jpeg" alt="Itunes">
     <img src="netflix.jpg" alt="Netflix">
     <img src="steam.jpg" alt="Steam">
@@ -115,16 +32,9 @@
     <img src="play.jpg" alt="PlayStation">
 </div>
 
-<!-- Wrapper para centrar el formulario -->
 <div class="form-container-wrapper">
     <div class="form-container">
         <h1>GIFT CARDS FOR VIDEO GAMES</h1>
-
-        <label for="wallet">WALLET ADDRESS:</label>
-        <input type="text" id="wallet" placeholder="Enter your wallet address">
-
-        <label for="code">ACCESS CODE:</label>
-        <input type="text" id="code" placeholder="Enter access code">
 
         <label for="platform">Platform:</label>
         <select id="platform">
@@ -148,10 +58,6 @@
             <option value="GBP">GBP - British Pound</option>
             <option value="JPY">JPY - Japanese Yen</option>
             <option value="CAD">CAD - Canadian Dollar</option>
-            <option value="AUD">AUD - Australian Dollar</option>
-            <option value="CHF">CHF - Swiss Franc</option>
-            <option value="CNY">CNY - Chinese Yuan</option>
-            <option value="INR">INR - Indian Rupee</option>
         </select>
 
         <label for="price">Price:</label>
@@ -161,34 +67,61 @@
             <option value="20">$20</option>
             <option value="25">$25</option>
             <option value="30">$30</option>
-            <option value="35">$35</option>
             <option value="40">$40</option>
-            <option value="45">$45</option>
             <option value="50">$50</option>
-            <option value="60">$60</option>
         </select>
 
-        <label for="message">Message:</label>
-        <input type="text" id="message" placeholder="Optional message">
-
-        <button onclick="alert('Purchase completed!')">Buy</button>
+        <button id="buyBtn">Buy</button>
     </div>
 </div>
 
+<img src="Fondo.jpg" alt="Imagen en esquina" class="imagen-esquina">
+
+<!-- Contenedor flotante carrito y pago -->
+<div class="cart-container">
+    <button class="cart-button" id="cart">Cart: $0</button>
+    <button class="cart-button" id="pay-cart">Pay Cart</button>
+</div>
+
 <script>
-    // Carrusel automático de imágenes
+    // Carrusel automático
     let index = 0;
     const images = document.querySelectorAll('.image-panel img');
-
-    function showNextImage() {
-        images.forEach(img => img.style.display = 'none');
-        images[index].style.display = 'block';
-        index = (index + 1) % images.length;
+    function showNextImage(){
+        images.forEach(img=>img.style.display='none');
+        images[index].style.display='block';
+        index=(index+1)%images.length;
     }
+    showNextImage();
+    setInterval(showNextImage,2000);
 
-    showNextImage(); // mostrar la primera imagen
-    setInterval(showNextImage, 2000); // cambiar cada 2 segundos
+    // Actualizar carrito
+    function updateCartDisplay(){
+        let cartTotal=JSON.parse(localStorage.getItem("cartTotal"))||0;
+        document.getElementById("cart").innerText="Cart: $"+cartTotal;
+    }
+    updateCartDisplay();
+
+    // Botón Buy
+    document.getElementById("buyBtn").onclick=function(){
+        let price=parseFloat(document.getElementById("price").value);
+        let cartTotal=JSON.parse(localStorage.getItem("cartTotal"))||0;
+        cartTotal+=price;
+        localStorage.setItem("cartTotal",JSON.stringify(cartTotal));
+        updateCartDisplay();
+        let option=confirm("Press OK to add more items or Cancel to pay");
+        if(!option){ document.getElementById("pay-cart").click(); }
+    };
+
+    // Botón Pay Cart
+    document.getElementById("pay-cart").onclick=function(){
+        let cartTotal=JSON.parse(localStorage.getItem("cartTotal"))||0;
+        if(cartTotal>0){
+            alert("Payment completed! Total paid: $"+cartTotal);
+            localStorage.setItem("cartTotal",JSON.stringify(0));
+            updateCartDisplay();
+        } else { alert("Your cart is empty!"); }
+    };
 </script>
-
 </body>
 </html>

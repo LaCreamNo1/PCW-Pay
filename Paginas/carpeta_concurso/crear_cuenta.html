@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+     <link rel="icon" type="image/jpeg" href="logo.jpeg">
     <meta charset="UTF-8">
     <title>Access</title>
     <style>
@@ -10,7 +11,8 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-          background-color: #87CEEB; 
+            background-color: #87CEEB; 
+            position: relative; /* necesario para la imagen posicionada */
         }
 
         .login-container {
@@ -45,6 +47,18 @@
         .login-button:hover {
             transform: scale(1.1);
         }
+
+        /* Imagen esquina inferior derecha */
+        .imagen-esquina {
+            position: fixed;   /* se mantiene en la esquina aunque se haga scroll */
+            bottom: 20px;      /* distancia desde abajo */
+            right: 20px;       /* distancia desde la derecha */
+            width: 100px;      /* tamaño pequeño */
+            height: auto;      /* mantiene proporción */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 1000;     /* para que quede encima de otros elementos */
+        }
     </style>
 </head>
 <body>
@@ -58,5 +72,8 @@
             Create Account & Login
         </button>
     </div>
+
+    <!-- Imagen en esquina inferior derecha -->
+    <img src="Fondo.jpg" alt="Imagen en esquina" class="imagen-esquina">
 </body>
 </html>

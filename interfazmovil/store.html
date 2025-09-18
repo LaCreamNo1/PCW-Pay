@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+   <link rel="icon" type="image/jpeg" href="logo.jpeg">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Digital Gift Cards Store - Catalog</title>
@@ -87,6 +88,18 @@
     .loader{border:6px solid rgba(255,255,255,0.3);border-top:6px solid white;border-radius:50%;width:50px;height:50px;animation:spin 1s linear infinite;}
     @keyframes spin{100%{transform:rotate(360deg)}}
 
+    /* Imagen esquina inferior derecha */
+    .imagen-esquina {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 100px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+
     @media(max-width:380px){.cards-container{grid-template-columns:1fr;}}
   </style>
 </head>
@@ -131,36 +144,37 @@
           <h3>PlayStation</h3>
           <p>$10 - $100</p>
           <button onclick="selectAmount('PlayStation',[10,25,50,100])">Buy</button>
-      </div>
-      <div class="gift-card">
+        </div>
+        <div class="gift-card">
           <img src="imagenes/disney.jpeg" alt="Disney Gift Card">
           <h3>Disney</h3>
           <p>$10 - $100</p>
           <button onclick="selectAmount('Disney',[10,25,50,100])">Buy</button>
-      </div>
-<div class="gift-card">
+        </div>
+        <div class="gift-card">
           <img src="imagenes/hbo.jpg" alt="HBO MAX Gift Card">
           <h3>HBO MAX</h3>
           <p>$10 - $100</p>
           <button onclick="selectAmount('HBO MAX',[10,25,50,100])">Buy</button>
-      </div>
-<div class="gift-card">
+        </div>
+        <div class="gift-card">
           <img src="imagenes/google.jpeg" alt="Google Play Gift Card">
           <h3>Google Play</h3>
           <p>$10 - $100</p>
           <button onclick="selectAmount('Google Play',[10,25,50,100])">Buy</button>
-      </div>
-<div class="gift-card">
+        </div>
+        <div class="gift-card">
           <img src="imagenes/nintendo.jpg" alt="Nintendo Gift Card">
           <h3>Nintendo</h3>
           <p>$10 - $100</p>
           <button onclick="selectAmount('Nintendo',[10,25,50,100])">Buy</button>
-      </div>
-<div class="gift-card">
+        </div>
+        <div class="gift-card">
           <img src="imagenes/itunes.jpeg" alt="Itunes Gift Card">
           <h3>Itunes</h3>
           <p>$10 - $100</p>
           <button onclick="selectAmount('Itunes',[10,25,50,100])">Buy</button>
+        </div>
       </div>
 
       <div class="back-btn">
@@ -168,7 +182,7 @@
       </div>
     </section>
   </main>
-
+HEAD
   <!-- Payment screen -->
   <div class="processing" id="processing-screen">
     <div class="loader"></div>

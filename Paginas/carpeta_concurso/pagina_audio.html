@@ -1,111 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+ <link rel="icon" type="image/jpeg" href="logo.jpeg">
 <meta charset="UTF-8">
-<title>MUSIC AND SOUND</title>
+<title>VIDEO</title>
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        background-color: #87CEEB;
-        display: flex;
-    }
-
-    /* Panel de imágenes a la izquierda */
- .image-panel {
-    width: 250px;
-    height: 100vh;
-    background-color:  #FFB347; /* peachpuff: durazno claro que combina con celeste */
-    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-}
-
-    .image-panel img {
-        width: 100%;
-        border-radius: 8px;
-        margin-bottom: 10px;
-        display: none; /* Oculto por defecto */
-    }
-
-    /* Contenedor del formulario */
-    .form-container-wrapper {
-        flex: 1; /* Ocupa todo el espacio restante */
-        display: flex;
-        justify-content: center; /* Centrar horizontalmente */
-        align-items: center;     /* Centrar verticalmente */
-        padding: 20px;
-    }
-
-    .form-container {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        width: 400px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    }
-
-    .form-container label {
-        display: block;
-        margin-top: 10px;
-        font-weight: bold;
-    }
-
-    .form-container input, 
-    .form-container select {
-        width: 100%;
-        padding: 8px;
-        margin-top: 5px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-    }
-
-    .form-container button {
-        margin-top: 15px;
-        padding: 10px;
-        width: 100%;
-        border: none;
-        border-radius: 5px;
-        background-color: red;
-        color: white;
-        font-size: 16px;
-        cursor: pointer;
-        transition: transform 0.3s;
-    }
-
-    .form-container button:hover {
-        transform: scale(1.05);
-    }
-
-    @media(max-width:900px){
-        body {
-            flex-direction: column;
-            align-items: center;
-        }
-        .image-panel {
-            width: 90%;
-            height: 300px;
-            margin-bottom: 20px;
-        }
-        .form-container-wrapper {
-            width: 90%;
-            justify-content: center;
-        }
-        .form-container {
-            width: 100%;
-        }
-    }
+    body { font-family: Arial, sans-serif; margin:0; background-color: #FF8C42; display:flex; position: relative; }
+    .image-panel { width: 250px; height:100vh; background-color:#FFB347; box-shadow:2px 0 10px rgba(0,0,0,0.2); overflow:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:10px; }
+    .image-panel img { width:100%; border-radius:8px; margin-bottom:10px; display:none; }
+    .form-container-wrapper { flex:1; display:flex; justify-content:center; align-items:center; padding:20px; }
+    .form-container { background-color:#fff; padding:20px; border-radius:10px; width:400px; box-shadow:0 0 10px rgba(0,0,0,0.2); }
+    .form-container label { display:block; margin-top:10px; font-weight:bold; }
+    .form-container select { width:100%; padding:8px; margin-top:5px; border-radius:5px; border:1px solid #ccc; }
+    .form-container button { margin-top:15px; padding:10px; width:100%; border:none; border-radius:5px; background-color:red; color:white; font-size:16px; cursor:pointer; transition: transform 0.3s; }
+    .form-container button:hover { transform: scale(1.05); }
+    .imagen-esquina { position:fixed; bottom:20px; right:20px; width:100px; height:auto; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.3); z-index:1000; }
+    .cart-container { position: fixed; right: 20px; top: 80px; display: flex; flex-direction: column; gap: 15px; z-index: 1000; }
+    .cart-button { padding: 8px 12px; background-color: green; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    .charge-button { padding: 8px 12px; background-color: orange; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    @media(max-width:900px){ body { flex-direction:column; align-items:center; } .image-panel { width:90%; height:300px; margin-bottom:20px; } .form-container-wrapper { width:90%; justify-content:center; } .form-container { width:100%; } }
 </style>
 </head>
 <body>
 
-<!-- Panel de imágenes a la izquierda -->
 <div class="image-panel">
-   <img src="spotify.jpeg" alt="Spotify">
+    <img src="spotify.jpeg" alt="Spotify">
     <img src="itunes.jpeg" alt="Itunes">
     <img src="netflix.jpg" alt="Netflix">
     <img src="steam.jpg" alt="Steam">
@@ -115,29 +34,19 @@
     <img src="play.jpg" alt="PlayStation">
 </div>
 
-<!-- Wrapper para centrar el formulario -->
 <div class="form-container-wrapper">
     <div class="form-container">
-        <h1>GIFT CARDS FOR MUSIC AND SOUND</h1>
-
-        <label for="wallet">WALLET ADDRESS:</label>
-        <input type="text" id="wallet" placeholder="Enter your wallet address">
-
-        <label for="code">ACCESS CODE:</label>
-        <input type="text" id="code" placeholder="Enter access code">
+        <h1>GIFT CARDS FOR VIDEO STREAMING</h1>
 
         <label for="platform">Platform:</label>
         <select id="platform">
+            <option value="netflix">Netflix</option>
+            <option value="disney">Disney+</option>
+            <option value="hbo">HBO</option>
+            <option value="prime">Amazon Prime</option>
+            <option value="hulu">Hulu</option>
+            <option value="youtube">YouTube</option>
             <option value="spotify">Spotify</option>
-            <option value="applemusic">Apple Music</option>
-            <option value="amazonmusic">Amazon Music</option>
-            <option value="deezer">Deezer</option>
-            <option value="tidal">Tidal</option>
-            <option value="youtube">YouTube Music</option>
-            <option value="soundcloud">SoundCloud</option>
-            <option value="pandora">Pandora</option>
-            <option value="bandcamp">Bandcamp</option>
-            <option value="napster">Napster</option>
         </select>
 
         <label for="currency">Currency:</label>
@@ -148,10 +57,6 @@
             <option value="GBP">GBP - British Pound</option>
             <option value="JPY">JPY - Japanese Yen</option>
             <option value="CAD">CAD - Canadian Dollar</option>
-            <option value="AUD">AUD - Australian Dollar</option>
-            <option value="CHF">CHF - Swiss Franc</option>
-            <option value="CNY">CNY - Chinese Yuan</option>
-            <option value="INR">INR - Indian Rupee</option>
         </select>
 
         <label for="price">Price:</label>
@@ -161,34 +66,116 @@
             <option value="20">$20</option>
             <option value="25">$25</option>
             <option value="30">$30</option>
-            <option value="35">$35</option>
             <option value="40">$40</option>
-            <option value="45">$45</option>
             <option value="50">$50</option>
-            <option value="60">$60</option>
         </select>
 
-        <label for="message">Message:</label>
-        <input type="text" id="message" placeholder="Optional message">
-
-        <button onclick="alert('Purchase completed!')">Buy</button>
+        <button id="buyBtn">Buy</button>
     </div>
 </div>
 
+<img src="Fondo.jpg" alt="Imagen en esquina" class="imagen-esquina">
+
+<div class="cart-container">
+    <button class="cart-button" id="cart">Cart: $0</button>
+</div>
+
 <script>
-    // Carrusel automático de imágenes
+    // Carrusel automático
     let index = 0;
     const images = document.querySelectorAll('.image-panel img');
-
-    function showNextImage() {
-        images.forEach(img => img.style.display = 'none');
-        images[index].style.display = 'block';
-        index = (index + 1) % images.length;
+    function showNextImage(){
+        images.forEach(img=>img.style.display='none');
+        images[index].style.display='block';
+        index=(index+1)%images.length;
     }
+    showNextImage();
+    setInterval(showNextImage,2000);
 
-    showNextImage(); // mostrar la primera imagen
-    setInterval(showNextImage, 2000); // cambiar cada 2 segundos
+    // Carrito
+    function updateCartDisplay(){
+        let cartTotal=JSON.parse(localStorage.getItem("cartTotal"))||0;
+        document.getElementById("cart").innerText="Cart: $"+cartTotal;
+    }
+    updateCartDisplay();
+
+    // Buy Button
+    document.getElementById("buyBtn").onclick=function(){
+        let price=parseFloat(document.getElementById("price").value);
+        let cartTotal=JSON.parse(localStorage.getItem("cartTotal"))||0;
+        cartTotal+=price;
+        localStorage.setItem("cartTotal",JSON.stringify(cartTotal));
+        updateCartDisplay();
+
+        // Ventana emergente con dos botones
+        let popup=document.createElement("div");
+        popup.style.position="fixed";
+        popup.style.top="50%";
+        popup.style.left="50%";
+        popup.style.transform="translate(-50%, -50%)";
+        popup.style.background="#fff";
+        popup.style.padding="20px";
+        popup.style.borderRadius="10px";
+        popup.style.boxShadow="0 0 10px rgba(0,0,0,0.3)";
+        popup.style.zIndex="2000";
+
+        let msg=document.createElement("p");
+        msg.innerText="Choose an option:";
+        popup.appendChild(msg);
+
+        let buyMoreBtn=document.createElement("button");
+        buyMoreBtn.innerText="Buy More";
+        buyMoreBtn.style.marginRight="10px";
+        buyMoreBtn.onclick=function(){ document.body.removeChild(popup); };
+        popup.appendChild(buyMoreBtn);
+
+        let payBtn=document.createElement("button");
+        payBtn.innerText="Pay";
+        payBtn.onclick=function(){
+            document.body.removeChild(popup);
+
+            // Ventana emergente para ingresar Wallet
+            let payPopup=document.createElement("div");
+            payPopup.style.position="fixed";
+            payPopup.style.top="50%";
+            payPopup.style.left="50%";
+            payPopup.style.transform="translate(-50%, -50%)";
+            payPopup.style.background="#fff";
+            payPopup.style.padding="20px";
+            payPopup.style.borderRadius="10px";
+            payPopup.style.boxShadow="0 0 10px rgba(0,0,0,0.3)";
+            payPopup.style.zIndex="2000";
+
+            let walletLabel=document.createElement("p");
+            walletLabel.innerText="Enter your wallet link:";
+            payPopup.appendChild(walletLabel);
+
+            let walletInput=document.createElement("input");
+            walletInput.type="text";
+            walletInput.style.width="100%";
+            walletInput.style.marginBottom="10px";
+            payPopup.appendChild(walletInput);
+
+            let confirmBtn=document.createElement("button");
+            confirmBtn.innerText="Confirm Payment";
+            confirmBtn.onclick=function(){
+                let cartTotal=JSON.parse(localStorage.getItem("cartTotal"))||0;
+                if(walletInput.value.trim()===""){ alert("Please enter your wallet link!"); return; }
+                alert(`Payment of $${cartTotal} sent to wallet:\n${walletInput.value}`);
+                localStorage.setItem("cartTotal",JSON.stringify(0));
+                updateCartDisplay();
+                document.body.removeChild(payPopup);
+            };
+            payPopup.appendChild(confirmBtn);
+
+            document.body.appendChild(payPopup);
+        };
+        popup.appendChild(payBtn);
+
+        document.body.appendChild(popup);
+    };
 </script>
 
 </body>
 </html>
+

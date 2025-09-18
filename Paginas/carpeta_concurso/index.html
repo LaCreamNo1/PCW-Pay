@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   <link rel="icon" type="image/jpeg" href="logo.jpeg">
     <meta charset="UTF-8">
     <title>PCW</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-           background-color: #87CEEB; /* fondo general */
+            background-color: #87CEEB;
             margin: 0;
             padding: 0;
+            position: relative; /* necesario para posicionar la imagen dentro del body */
         }
 
         h1 {
-            margin-top: 30px;
             color: black;
+            margin-top: 30px;
         }
 
-        /* Panel que contiene los campos y botones */
         .panel {
-            background-color: white; /* fondo celeste */
+            background-color: white;
             padding: 40px;
-            margin: 50px auto;
             width: 400px;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            margin: 50px auto;
         }
 
-        /* Campos de texto */
         .panel input {
             width: 80%;
             padding: 12px;
@@ -37,7 +37,6 @@
             font-size: 16px;
         }
 
-        /* Botones */
         .panel button {
             width: 80%;
             padding: 15px;
@@ -52,7 +51,18 @@
         }
 
         .panel button:hover {
-            transform: scale(1.1); /* efecto al pasar el cursor */
+            transform: scale(1.1);
+        }
+
+        /* Imagen en esquina derecha */
+        .imagen-derecha {
+            position: fixed; /* la hace fija en la esquina de la pantalla */
+            bottom: 20px;    /* distancia desde abajo */
+            right: 20px;     /* distancia desde la derecha */
+            width: 150px;    /* tamaño pequeño, puedes ajustar */
+            height: auto;    /* mantiene proporción */
+            border-radius: 10px; /* opcional, bordes redondeados */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
     </style>
 </head>
@@ -60,13 +70,13 @@
     <h1>PLATFORM CARD WALLET</h1>
 
     <div class="panel">
-        <!-- Campos -->
         <input type="email" placeholder="Email" id="email"><br>
         <input type="password" placeholder="Password" id="password"><br>
-
-        <!-- Botones -->
         <button onclick="window.location.href='plataformas.html'">Login</button>
         <button onclick="window.location.href='crear_cuenta.html'">Create Account</button>
     </div>
+
+    <!-- Imagen en esquina derecha -->
+    <img src="Fondo.jpg" alt="Imagen en esquina" class="imagen-derecha">
 </body>
 </html>
