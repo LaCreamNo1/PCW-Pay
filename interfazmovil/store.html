@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Digital Gift Cards Store</title>
+  <title>Digital Gift Cards Store - Extended Catalog</title>
   <style>
     :root{
       --bg-gradient-1: #6dd5ed;
@@ -24,11 +24,12 @@
       align-items:center;
       justify-content:center;
       padding:20px;
+      overflow: hidden;
     }
 
     .store-card{
       width:100%;
-      max-width:480px;
+      max-width:500px;
       border-radius:18px;
       background:var(--card-bg);
       box-shadow:0 10px 30px rgba(16,24,40,0.25);
@@ -37,6 +38,8 @@
       flex-direction:column;
       gap:18px;
       backdrop-filter: blur(6px);
+      max-height:90vh;
+      overflow-y: auto; /* Scroll vertical */
     }
 
     h1{text-align:center;color:#0f172a;font-size:22px}
@@ -106,20 +109,53 @@
   <main class="screen">
     <section class="store-card">
       <h1>Digital Gift Cards</h1>
-      <p class="lead">Select your favorite gift card and purchase securely!</p>
+      <p class="lead">Browse and purchase your favorite gift cards from games, video, and music platforms!</p>
 
       <div class="cards-container">
+        <!-- Video Games -->
         <div class="gift-card">
-          <img src="imagenes/amazon.png" alt="Amazon Gift Card">
-          <h3>Amazon</h3>
-          <p>$10 - $100</p>
-          <button onclick="alert('Added Amazon card to cart')">Buy</button>
+          <img src="imagenes/steam.png" alt="Steam Gift Card">
+          <h3>Steam</h3>
+          <p>$20 - $200</p>
+          <button onclick="alert('Added Steam card to cart')">Buy</button>
         </div>
         <div class="gift-card">
-          <img src="imagenes/itunes.png" alt="iTunes Gift Card">
-          <h3>iTunes</h3>
-          <p>$15 - $150</p>
-          <button onclick="alert('Added iTunes card to cart')">Buy</button>
+          <img src="imagenes/xbox.png" alt="Xbox Gift Card">
+          <h3>Xbox</h3>
+          <p>$10 - $150</p>
+          <button onclick="alert('Added Xbox card to cart')">Buy</button>
+        </div>
+        <div class="gift-card">
+          <img src="imagenes/playstation.png" alt="PlayStation Gift Card">
+          <h3>PlayStation</h3>
+          <p>$20 - $100</p>
+          <button onclick="alert('Added PlayStation card to cart')">Buy</button>
+        </div>
+        <div class="gift-card">
+          <img src="imagenes/nintendo.png" alt="Nintendo eShop Gift Card">
+          <h3>Nintendo eShop</h3>
+          <p>$10 - $100</p>
+          <button onclick="alert('Added Nintendo card to cart')">Buy</button>
+        </div>
+
+        <!-- Streaming Video -->
+        <div class="gift-card">
+          <img src="imagenes/netflix.png" alt="Netflix Gift Card">
+          <h3>Netflix</h3>
+          <p>$15 - $100</p>
+          <button onclick="alert('Added Netflix card to cart')">Buy</button>
+        </div>
+        <div class="gift-card">
+          <img src="imagenes/disney.png" alt="Disney+ Gift Card">
+          <h3>Disney+</h3>
+          <p>$20 - $100</p>
+          <button onclick="alert('Added Disney+ card to cart')">Buy</button>
+        </div>
+        <div class="gift-card">
+          <img src="imagenes/hbo.png" alt="HBO Max Gift Card">
+          <h3>HBO Max</h3>
+          <p>$15 - $100</p>
+          <button onclick="alert('Added HBO Max card to cart')">Buy</button>
         </div>
         <div class="gift-card">
           <img src="imagenes/googleplay.png" alt="Google Play Gift Card">
@@ -127,16 +163,36 @@
           <p>$10 - $100</p>
           <button onclick="alert('Added Google Play card to cart')">Buy</button>
         </div>
+
+        <!-- Music Platforms -->
         <div class="gift-card">
-          <img src="imagenes/steam.png" alt="Steam Gift Card">
-          <h3>Steam</h3>
-          <p>$20 - $200</p>
-          <button onclick="alert('Added Steam card to cart')">Buy</button>
+          <img src="imagenes/itunes.png" alt="iTunes Gift Card">
+          <h3>iTunes</h3>
+          <p>$15 - $150</p>
+          <button onclick="alert('Added iTunes card to cart')">Buy</button>
+        </div>
+        <div class="gift-card">
+          <img src="imagenes/spotify.png" alt="Spotify Gift Card">
+          <h3>Spotify</h3>
+          <p>$10 - $100</p>
+          <button onclick="alert('Added Spotify card to cart')">Buy</button>
+        </div>
+        <div class="gift-card">
+          <img src="imagenes/pandora.png" alt="Pandora Gift Card">
+          <h3>Pandora</h3>
+          <p>$10 - $100</p>
+          <button onclick="alert('Added Pandora card to cart')">Buy</button>
+        </div>
+        <div class="gift-card">
+          <img src="imagenes/tidal.png" alt="Tidal Gift Card">
+          <h3>Tidal</h3>
+          <p>$10 - $100</p>
+          <button onclick="alert('Added Tidal card to cart')">Buy</button>
         </div>
       </div>
 
       <div class="back-btn">
-        <button onclick="window.location.href='index.html'">← Back to Home</button>
+        <button onclick="window.location.href='Interfaz Inicio - móvil.html'">← Back to Home</button>
       </div>
     </section>
   </main>
