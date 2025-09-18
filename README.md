@@ -1,103 +1,103 @@
 # 💳 PCW Pay — Platform Card Wallet
 
-**PCW Pay** es una aplicación web para la compra, gestión y redención de tarjetas de regalo digitales que permiten obtener licencias para tus servicios favoritos de entretenimiento. A través de una arquitectura flexible y segura, los usuarios pueden elegir entre múltiples plataformas dentro de una misma categoría (audio, video, videojuegos), incluso después de haber adquirido la tarjeta.
+**PCW Pay** is a web application for purchasing, managing, and redeeming digital gift cards that grant access to your favorite entertainment services. Through a flexible and secure architecture, users can choose from multiple platforms within a category (audio, video, gaming)—even after the card has been purchased.
 
 ---
 
-## 🎯 Objetivo del proyecto
+## 🎯 Project Objective
 
-Desarrollar una solución interoperable que elimine la fricción en la compra de tarjetas de regalo, permitiendo al usuario final decidir en qué plataforma utilizar su saldo, y al mismo tiempo facilitar pagos seguros entre wallets mediante el protocolo Open Payments.
-
----
-
-## 📌 Problema que resuelve
-
-Las tarjetas de regalo tradicionales están limitadas a una sola plataforma, lo que genera:
-
-- Incertidumbre sobre los gustos del destinatario.
-- Pérdida de valor si no se usa la tarjeta.
-- Frustración en el proceso de compra.
-
-**PCW Pay** permite que el usuario elija la plataforma al momento de redimir la tarjeta, no al momento de comprarla.
+To develop an interoperable solution that removes friction from the gift card purchasing process, allowing users to decide where to redeem their balance, while enabling secure wallet-to-wallet payments via the Open Payments protocol.
 
 ---
 
-## 💼 Beneficios para el negocio
+## 📌 Problem It Solves
 
-- ✅ Mayor conversión en ventas de tarjetas digitales.
-- 🔁 Reducción de devoluciones o tarjetas no utilizadas.
-- 💡 Fidelización de usuarios por experiencia personalizada.
-- 🔗 Interoperabilidad entre wallets gracias a Open Payments.
+Traditional gift cards are locked to a single platform, which leads to:
 
----
+- Uncertainty about the recipient’s preferences.
+- Loss of value if the card goes unused.
+- Frustration during the purchase process.
 
-## 🛠️ Componentes del sistema
-
-| Componente         | Descripción                                                                 |
-|--------------------|------------------------------------------------------------------------------|
-| Frontend Web       | Interfaz responsiva para login, registro, selección de plataforma y carrito. |
-| Backend API        | Lógica de negocio, autenticación y procesamiento de pagos.                  |
-| Open Payments SDK  | Integración con Interledger para pagos entre wallets.                       |
-| Base de Datos      | Gestión de usuarios, tarjetas, transacciones y configuraciones.             |
+**PCW Pay** allows users to choose the platform at the time of redemption, not at the time of purchase.
 
 ---
 
-## 🎨 Interfaz de usuario
+## 💼 Business Benefits
 
-- Panel lateral con carrusel automático de imágenes de plataformas disponibles.
-- Formulario para seleccionar:
-  - Plataforma (Steam, PlayStation, Xbox, etc.)
-  - Moneda (USD, MXN, EUR, etc.)
-  - Monto de la tarjeta ($10–$50)
-- Botón de compra que agrega el monto al carrito.
-- Carrito flotante con total acumulado y botón para pagar.
-- Comportamiento responsivo para dispositivos móviles.
+- ✅ Higher conversion rates for digital gift card sales.
+- 🔁 Fewer returns or unused cards.
+- 💡 Improved user retention through personalized experiences.
+- 🔗 Wallet interoperability powered by Open Payments.
 
 ---
 
-## ⚙️ Tecnologías utilizadas
+## 🛠️ System Components
 
-- **HTML/CSS/JS**: Interfaz de usuario.
-- **Node.js**: Backend y scripts de pago.
-- **@interledger/open-payments**: SDK para pagos seguros.
-- **PostgreSQL / MongoDB**: Persistencia de datos.
-- **OpenPayments Protocol**: Estándar abierto para interoperabilidad financiera.
-
----
-
-## 🔐 Seguridad y buenas prácticas
-
-- 🔒 Cifrado de contraseñas.
-- 🧼 Validación de entradas en frontend y backend.
-- 🌐 Uso de HTTPS en toda la aplicación.
-- 🔑 Separación de claves privadas (almacenadas en `private.key`).
-- 🛡️ Autenticación basada en tokens.
-- 🧯 Hardening de servidores y monitoreo de actividad.
+| Component           | Description                                                                 |
+|---------------------|------------------------------------------------------------------------------|
+| Frontend Web        | Responsive interface for login, registration, platform selection, and cart. |
+| Backend API         | Business logic, authentication, and payment processing.                     |
+| Open Payments SDK   | Integration with Interledger for wallet-to-wallet payments.                 |
+| Database            | Manages users, cards, transactions, and configurations.                     |
 
 ---
 
-## 🚀 Cómo ejecutar el proyecto
+## 🎨 User Interface Features
 
-1. Clona el repositorio.
-2. Instala dependencias con `npm install`.
-3. Configura el servidor en `localhost:3000`.
-4. Ejecuta el backend con `node open-payments.js`.
-5. Abre `index.html` en tu navegador para probar el frontend.
-
----
-
-## 🧪 Pruebas y documentación
-
-- ✅ Pruebas unitarias para pagos, grants y autenticación.
-- 📖 Diccionario de datos incluido.
-- 📊 Diagramas UML de arquitectura y flujo de pagos.
-- 📚 Manual de usuario y guía de instalación disponibles en la carpeta `/docs`.
+- Sidebar with automatic image carousel of available platforms.
+- Form to select:
+  - Gaming platform (Steam, PlayStation, Xbox, etc.)
+  - Currency (USD, MXN, EUR, etc.)
+  - Card amount ($10–$50)
+- Purchase button that adds the amount to the cart.
+- Floating cart with total and payment button.
+- Responsive layout for mobile devices.
 
 ---
 
-## 👥 Equipo de desarrollo
+## ⚙️ Technologies Used
 
-- **Miguel Gonzalez Gonzalez** — Backend, estructura funcional.
-- **Alfonso Adrian Vilchis Diaz** — Integración OpenPayments, base de datos.
-- **Roberto Emmanuel Miranda** — Diseño visual.
-- **Raúl Díaz Regulez** — Diseño e integración de wallets.
+- **HTML/CSS/JS**: User interface.
+- **Node.js**: Backend and payment scripts.
+- **@interledger/open-payments**: Secure payment SDK.
+- **PostgreSQL / MongoDB**: Data persistence.
+- **OpenPayments Protocol**: Open standard for financial interoperability.
+
+---
+
+## 🔐 Security & Best Practices
+
+- 🔒 Password encryption.
+- 🧼 Input validation on frontend and backend.
+- 🌐 HTTPS enforced across the application.
+- 🔑 Separation of private keys (stored in `private.key`).
+- 🛡️ Token-based authentication.
+- 🧯 Server hardening and activity monitoring.
+
+---
+
+## 🚀 How to Run the Project
+
+1. Clone the repository.
+2. Install dependencies using `npm install`.
+3. Set up the server on `localhost:3000`.
+4. Run the backend with `node open-payments.js`.
+5. Open `index.html` in your browser to test the frontend.
+
+---
+
+## 🧪 Testing & Documentation
+
+- ✅ Unit tests for payments, grants, and authentication.
+- 📖 Included data dictionary.
+- 📊 UML diagrams for architecture and payment flow.
+- 📚 User manual and installation guide available in the `/docs` folder.
+
+---
+
+## 👥 Development Team
+
+- **Miguel Gonzalez Gonzalez** — Backend, functional structure.
+- **Alfonso Adrian Vilchis Diaz** — OpenPayments integration, database.
+- **Roberto Emmanuel Miranda** — Visual design.
+- **Raúl Díaz Regulez** — Wallet design and integration.
