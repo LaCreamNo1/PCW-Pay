@@ -231,7 +231,7 @@
     let total = cart.reduce((sum, item)=> sum + item.amount, 0);
 
     // Redirigir a la cartera local
-    let finalUrl = "index.js" + total;
+    let finalUrl = "wallet/index.html?amount=" + total;
     window.location.href = finalUrl;
 
     // Vaciar carrito
