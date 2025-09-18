@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>access</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .login-container input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .button-img {
+            width: 200px; /* tamaño del botón */
+            margin: 10px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .button-img:hover {
+            transform: scale(1.2); /* crece al pasar el cursor */
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>access</h2>
+        <input type="email" placeholder="Correo electrónico"><br>
+        <input type="password" placeholder="Contraseña"><br>
+
+        <!-- Botón único que manda a index.html -->
+        <a href="index.html">
+            <img src="crear.png" class="button-img" alt="Crear Cuenta e Iniciar Sesión">
+        </a>
+    </div>
+</body>
+</html>

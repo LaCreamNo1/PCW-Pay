@@ -1,69 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Inicio de Sesión</title>
+    <title>PCW</title>
     <style>
         body {
-            background-color: #f0f0f0; /* color de fondo */
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .login-container {
-            background-color: #ffffff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
             text-align: center;
+           background-color: #87CEEB; /* fondo general */
+            margin: 0;
+            padding: 0;
         }
 
-        .login-container h2 {
-            margin-bottom: 20px;
+        h1 {
+            margin-top: 30px;
+            color: black;
         }
 
-        .login-container input {
+        /* Panel que contiene los campos y botones */
+        .panel {
+            background-color: white; /* fondo celeste */
+            padding: 40px;
+            margin: 50px auto;
+            width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Campos de texto */
+        .panel input {
             width: 80%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 8px;
             border: 1px solid #ccc;
             font-size: 16px;
         }
 
-        .login-container img.button-img {
-            width: 150px; /* tamaño del botón */
-            margin: 10px;
+        /* Botones */
+        .panel button {
+            width: 80%;
+            padding: 15px;
+            margin: 12px 0;
+            font-size: 18px;
+            color: white;
+            background-color: red;
+            border: none;
+            border-radius: 10px;
             cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .panel button:hover {
+            transform: scale(1.1); /* efecto al pasar el cursor */
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <h2>Inicio de Sesión</h2>
-        <input type="email" placeholder="Correo electrónico" id="email"><br>
-        <input type="password" placeholder="Contraseña" id="password"><br>
-        
-        <!-- Botones como imágenes -->
-        <img src="iniciar_sesion.png" class="button-img" alt="Iniciar Sesión" onclick="iniciarSesion()">
-        <img src="crear_cuenta.png" class="button-img" alt="Crear Cuenta" onclick="crearCuenta()">
+    <h1>PLATFORM CARD WALLET</h1>
+
+    <div class="panel">
+        <!-- Campos -->
+        <input type="email" placeholder="Email" id="email"><br>
+        <input type="password" placeholder="Password" id="password"><br>
+
+        <!-- Botones -->
+        <button onclick="window.location.href='plataformas.html'">Login</button>
+        <button onclick="window.location.href='crear_cuenta.html'">Create Account</button>
     </div>
-<script>
-    function iniciarSesion() {
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-
-        // Redirige a plataformas.html
-        window.location.href = "plataformas.html";
-    }
-
-    function crearCuenta() {
-        // Redirige a la página de crear cuenta (puedes cambiar el nombre si la tienes)
-        window.location.href = "crear_cuenta.html";
-    }
-</script>
 </body>
 </html>
