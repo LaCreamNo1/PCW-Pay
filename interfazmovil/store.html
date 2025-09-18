@@ -238,56 +238,52 @@
   }
 
   async function checkout(){
-    if(cart.length===0){alert("Your cart is empty!"); return;}
-
-    // Pedir URL del comprador (emisor)
-    let buyerUrl = prompt("Please enter your Digital Wallet URL to pay:");
-    if(!buyerUrl || buyerUrl.trim() === ""){
-      alert("Payment canceled. Buyer URL is required.");
-      return;
-    }
-
-    // Calcular total de la compra
-    let total = cart.reduce((sum, item)=> sum + item.amount, 0);
-
-    // Confirmación de pago
-    let confirmPay = confirm(`You are about to pay $${total} via your wallet.\nDo you accept?`);
-    if(!confirmPay){
-      alert("Payment canceled by buyer.");
-      return;
-    }
-
-    // Mostrar pantalla de procesamiento
-    document.getElementById('catalog-screen').style.display = 'none';
-    document.getElementById('processing-screen').style.display = 'flex';
-
-    try {
-      // 1️⃣ Enviar al intermediario
-      await fetch(intermediaryUrl, {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({from: buyerUrl, to: receiverUrl, amount})
-      });
-
-      // 2️⃣ Enviar al receptor
-      await fetch(receiverUrl, {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({from: intermediaryUrl, amount})
-      });
-
-      alert("✅ Payment completed successfully!");
-
-      // Vaciar carrito
-      cart = [];
-      updateCart();
-    } catch(err){
-      alert("❌ Payment failed: " + err);
-    } finally {
-      // Ocultar pantalla de procesamiento
-      document.getElementById('processing-screen').style.display = 'none';
-      document.getElementById('catalog-screen').style.display = 'flex';
-      closeCart();
-    }
+  if(cart.length === 0){
+    alert("Your cart is empty!");
+    return;
   }
+
+  // Pedir URL del comprador (emisor)
+  let buyerUrl = prompt("Please enter your Digital Wallet URL to pay:");
+  if(!buyerUrl || buyerUrl.trim() === ""){
+    alert("Payment canceled. Buyer URL is required.");
+    return;
+  }
+
+  // Calcular total de la compra
+  let total = cart.reduce((sum, item)=> sum + item.amount, 0);
+
+  // Mostrar pantalla de procesamiento
+  document.getElementById('catalog-screen').style.display = 'none';
+  document.getElementById('processing-screen').style.display = 'flex';
+
+  try {
+    // 👉 Llamar directamente al servidor Node.js para pagar
+    const response = await fetch('http://localhost:3000/pay', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ buyerUrl, total })
+    });
+
+    const data = await response.json();
+
+    if(response.ok){
+      alert("✅ Payment completed: " + data.message);
+    } else {
+      alert("❌ Payment failed: " + (data.error || "Unknown error"));
+    }
+
+    // Vaciar carrito automáticamente después del pago
+    cart = [];
+    updateCart();
+
+  } catch(err){
+    alert("❌ Payment failed: " + err.message);
+  } finally {
+    // Regresar a la pantalla principal
+    document.getElementById('processing-screen').style.display = 'none';
+    document.getElementById('catalog-screen').style.display = 'flex';
+    closeCart();
+  }
+}
 </script>
