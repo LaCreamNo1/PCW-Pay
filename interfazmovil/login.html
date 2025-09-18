@@ -4,21 +4,102 @@
   <meta charset="utf-8">
   <title>Login</title>
   <style>
-    body {font-family: Arial, sans-serif;display:flex;justify-content:center;align-items:center;height:100vh;background:#f0f2f5;}
-    .form-box {background:white;padding:20px;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,0.2);width:300px;}
-    h2{text-align:center;margin-bottom:15px;}
-    input{width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:5px;}
-    button{width:100%;padding:10px;background:#2193b0;color:white;border:none;border-radius:5px;cursor:pointer;font-weight:bold;}
-    button:hover{background:#176d80;}
+    body {
+      margin:0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      background: linear-gradient(135deg, #2193b0, #6dd5ed);
+    }
+    .form-box {
+      background:white;
+      padding:40px 30px;
+      border-radius:15px;
+      box-shadow:0 8px 25px rgba(0,0,0,0.3);
+      width:350px;
+      text-align:center;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+    h2 {
+      margin-bottom:20px;
+      color:#2193b0;
+      font-size:24px;
+    }
+    .input-group {
+      position:relative;
+      margin:15px 0;
+    }
+    .input-group input {
+      width:100%;
+      padding:12px 40px 12px 15px;
+      border:1px solid #ccc;
+      border-radius:10px;
+      font-size:15px;
+      outline:none;
+      transition:0.3s;
+    }
+    .input-group input:focus {
+      border-color:#2193b0;
+      box-shadow:0 0 6px rgba(33,147,176,0.4);
+    }
+    .input-group i {
+      position:absolute;
+      right:12px;
+      top:50%;
+      transform:translateY(-50%);
+      color:#777;
+    }
+    button {
+      width:100%;
+      padding:12px;
+      background:#2193b0;
+      color:white;
+      border:none;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:bold;
+      font-size:16px;
+      margin-top:10px;
+      transition:0.3s;
+    }
+    button:hover {
+      background:#176d80;
+    }
+    p {
+      margin-top:15px;
+      font-size:14px;
+    }
+    p a {
+      color:#2193b0;
+      text-decoration:none;
+      font-weight:bold;
+    }
+    p a:hover {
+      text-decoration:underline;
+    }
+    @keyframes fadeIn {
+      from {opacity:0; transform:translateY(-20px);}
+      to {opacity:1; transform:translateY(0);}
+    }
   </style>
+  <!-- Iconos de FontAwesome -->
+  <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <div class="form-box">
     <h2>Login</h2>
-    <input type="email" id="email" placeholder="Email" required>
-    <input type="password" id="password" placeholder="Password" required>
+    <div class="input-group">
+      <input type="email" id="email" placeholder="Email" required>
+      <i class="fas fa-envelope"></i>
+    </div>
+    <div class="input-group">
+      <input type="password" id="password" placeholder="Password" required>
+      <i class="fas fa-lock"></i>
+    </div>
     <button onclick="login()">Login</button>
-    <p style="text-align:center;margin-top:10px;">Don’t have an account? <a href="register.html">Register</a></p>
+    <p>Don’t have an account? <a href="registser.html">Register</a></p>
   </div>
 
   <script>
@@ -31,16 +112,12 @@
         return;
       }
 
-      // Cargar la "base de datos"
       let users = JSON.parse(localStorage.getItem("users")) || [];
-
-      // Buscar usuario
       let user = users.find(u => u.email === email && u.password === password);
 
       if(user){
         alert("Welcome, " + user.name + "!");
-        // Aquí puedes redirigir a la app principal
-        window.location.href = "catalog.html"; 
+        window.location.href = "store.html"; 
       }else{
         alert("Invalid email or password.");
       }
