@@ -5,13 +5,16 @@ const port = `3000`;
 app.get('/',(requestAnimationFrame, res) => {
     res.sendFile(_dirname = 'store.html');
 });
+app.use(express.json());
 
-app.post('ejecutar-script',(req,res)=>{
-    const wallet = req.body.name
+app.get('/alive', (req, res) => {
+    res.send('server alive');
+})
 
-    
-    console.log('!Se hizo click',wallet);
-    res.send('Script ejecutado')
+app.post('/ejecutar-script',(req,res)=>{
+    console.log(req.body);
+    const datoRecibido = req.body;
+    res.json(datoRecibido);
 });
 
 app.listen(port, () =>{
