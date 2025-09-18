@@ -234,13 +234,6 @@
     return;
   }
 
-  // Pedir URL del comprador (emisor)
-  let buyerUrl = prompt("Please enter your Digital Wallet URL to pay:");
-  if(!buyerUrl || buyerUrl.trim() === ""){
-    alert("Payment canceled. Buyer URL is required.");
-    return;
-  }
-
   // Calcular total de la compra
   let total = cart.reduce((sum, item)=> sum + item.amount, 0);
 
@@ -248,33 +241,18 @@
   document.getElementById('catalog-screen').style.display = 'none';
   document.getElementById('processing-screen').style.display = 'flex';
 
-  try {
-    // 👉 Llamar directamente al servidor Node.js para pagar
-    const response = await fetch('http://localhost:3000/pay', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({ buyerUrl, total })
-    });
+  // Simular un pequeño retraso de pago (2s)
+  setTimeout(() => {
+    alert("✅ Purchase completed successfully! Total: $" + total);
 
-    const data = await response.json();
-
-    if(response.ok){
-      alert("✅ Payment completed: " + data.message);
-    } else {
-      alert("❌ Payment failed: " + (data.error || "Unknown error"));
-    }
-
-    // Vaciar carrito automáticamente después del pago
+    // Vaciar carrito automáticamente después de la compra
     cart = [];
     updateCart();
 
-  } catch(err){
-    alert("❌ Payment failed: " + err.message);
-  } finally {
     // Regresar a la pantalla principal
     document.getElementById('processing-screen').style.display = 'none';
     document.getElementById('catalog-screen').style.display = 'flex';
     closeCart();
-  }
+  }, 2000);
 }
 </script>
