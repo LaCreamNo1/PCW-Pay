@@ -227,21 +227,21 @@
     if(cart.length===0){alert("Your cart is empty!");return;}
     let confirmPay = confirm("Are you sure you want to pay your order?");
     if(confirmPay){
-      // Aquí pedimos la URL de la cartera digital
-      let walletUrl = prompt("Please enter your Digital Wallet URL to proceed with payment:");
+      // Pedir la URL de la cartera
+      let walletUrl = prompt("Please enter your Digital Wallet base URL (example: https://miwallet.com/pay):");
       
       if(walletUrl && walletUrl.trim() !== ""){
-        // Continuar el flujo de pago
-        closeCart();
-        document.getElementById('catalog-screen').style.display='none';
-        document.getElementById('processing-screen').style.display='flex';
+        // Calcular total de la compra
+        let total = cart.reduce((sum, item)=> sum + item.amount, 0);
 
-        setTimeout(()=>{
-          document.getElementById('processing-screen').style.display='none';
-          document.getElementById('catalog-screen').style.display='flex';
-          alert("Purchase completed successfully!\nWallet used: " + walletUrl);
-          cart=[];updateCart();
-        },3000);
+        // Redirigir con el monto
+        let finalUrl = walletUrl + (walletUrl.includes('?') ? '&' : '?') + "amount=" + total;
+        
+        alert("Redirecting to payment: " + finalUrl);
+        window.location.href = finalUrl;
+        
+        // Vaciar carrito
+        cart=[];updateCart();
       }else{
         alert("Payment canceled. Wallet URL is required.");
         closeCart();
