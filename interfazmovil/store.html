@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Digital Gift Cards Store - Extended Catalog</title>
+  <title>Digital Gift Cards Store - Catalog</title>
   <style>
     :root{
       --bg-gradient-1: #6dd5ed;
@@ -14,181 +14,153 @@
       --glass: rgba(255,255,255,0.06);
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     }
-
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%; background: linear-gradient(135deg,var(--bg-gradient-1),var(--bg-gradient-2));}
 
-    .screen{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-      overflow: hidden;
-    }
+    .screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;overflow:hidden;}
 
     .store-card{
-      width:100%;
-      max-width:500px;
-      border-radius:18px;
-      background:var(--card-bg);
-      box-shadow:0 10px 30px rgba(16,24,40,0.25);
-      padding:20px;
-      display:flex;
-      flex-direction:column;
-      gap:18px;
-      backdrop-filter: blur(6px);
-      max-height:90vh;
-      overflow-y: auto; /* Scroll vertical */
+      width:100%;max-width:500px;border-radius:18px;
+      background:var(--card-bg);box-shadow:0 10px 30px rgba(16,24,40,0.25);
+      padding:20px;display:flex;flex-direction:column;gap:18px;
+      backdrop-filter: blur(6px);max-height:90vh;overflow-y:auto;
+      position: relative;
     }
 
     h1{text-align:center;color:#0f172a;font-size:22px}
     p.lead{text-align:center;color:var(--muted);font-size:14px}
 
-    .cards-container{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-    }
+    .cards-container{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 
     .gift-card{
-      background:var(--glass);
-      border-radius:12px;
-      padding:10px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      text-align:center;
-      transition:transform 0.25s, box-shadow 0.25s;
-      cursor:pointer;
+      background:var(--glass);border-radius:12px;padding:10px;
+      display:flex;flex-direction:column;align-items:center;text-align:center;
+      transition:transform 0.25s, box-shadow 0.25s;cursor:pointer;
     }
-    .gift-card:hover{
-      transform:scale(1.05);
-      box-shadow:0 8px 20px rgba(0,0,0,0.15);
-    }
+    .gift-card:hover{transform:scale(1.05);box-shadow:0 8px 20px rgba(0,0,0,0.15);}
     .gift-card img{width:80px;height:80px;object-fit:contain;margin-bottom:8px;}
     .gift-card h3{font-size:16px;color:#0f172a;margin-bottom:6px;}
     .gift-card p{font-size:13px;color:var(--muted);margin-bottom:8px;}
     .gift-card button{
-      padding:8px 12px;
-      border:none;
-      border-radius:8px;
+      padding:8px 12px;border:none;border-radius:8px;
       background:linear-gradient(90deg,var(--accent),#ff9966);
-      color:white;
-      font-weight:600;
-      cursor:pointer;
-      transition:all 0.25s;
+      color:white;font-weight:600;cursor:pointer;transition:all 0.25s;
     }
-    .gift-card button:hover{transform:scale(1.05);}
+    .gift-card button:hover{transform:scale(1.1);}
 
-    .back-btn{
-      text-align:center;
-      margin-top:10px;
+    /* Cart Icon */
+    .cart-icon{
+      position:absolute;top:15px;right:15px;
+      background:var(--accent);color:white;
+      border-radius:50%;width:40px;height:40px;
+      display:flex;align-items:center;justify-content:center;
+      font-weight:bold;cursor:pointer;
+      transition:transform 0.3s;
     }
-    .back-btn button{
-      padding:10px 18px;
-      border:none;
-      border-radius:12px;
-      background:transparent;
-      border:1px solid rgba(15,23,42,0.06);
-      cursor:pointer;
-      transition:all 0.25s;
-    }
-    .back-btn button:hover{
-      transform:scale(1.05);
-      border-color:var(--accent);
-      color:var(--accent);
+    .cart-icon:hover{transform:scale(1.1);}
+    .cart-count{
+      position:absolute;top:5px;right:5px;
+      background:white;color:var(--accent);
+      font-size:12px;font-weight:bold;
+      border-radius:50%;width:18px;height:18px;
+      display:flex;align-items:center;justify-content:center;
     }
 
-    @media (max-width:380px){
-      .cards-container{grid-template-columns:1fr;}
+    /* Modal */
+    .modal{
+      position:fixed;top:0;left:0;width:100%;height:100%;
+      background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;
+      z-index:999;
     }
+    .modal-content{
+      background:white;border-radius:16px;padding:20px;
+      width:90%;max-width:400px;max-height:80vh;overflow-y:auto;
+    }
+    .modal-content h2{text-align:center;margin-bottom:10px;}
+    .cart-item{display:flex;justify-content:space-between;margin:6px 0;color:#333}
+    .modal-content button{margin-top:10px;width:100%;padding:10px;border:none;border-radius:10px;font-weight:bold;cursor:pointer;}
+    .checkout{background:linear-gradient(90deg,var(--accent),#ff9966);color:white;}
+    .cancel{background:#ccc;color:#333;}
+
+    /* Payment screen */
+    .processing{display:none;flex-direction:column;align-items:center;justify-content:center;gap:20px;height:100vh;color:white;}
+    .loader{border:6px solid rgba(255,255,255,0.3);border-top:6px solid white;border-radius:50%;width:50px;height:50px;animation:spin 1s linear infinite;}
+    @keyframes spin{100%{transform:rotate(360deg)}}
+
+    @media(max-width:380px){.cards-container{grid-template-columns:1fr;}}
   </style>
 </head>
 <body>
-  <main class="screen">
+  <main class="screen" id="catalog-screen">
     <section class="store-card">
+      <div class="cart-icon" onclick="openCart()">
+        🛒
+        <div class="cart-count" id="cart-count">0</div>
+      </div>
       <h1>Digital Gift Cards</h1>
       <p class="lead">Browse and purchase your favorite gift cards from games, video, and music platforms!</p>
 
-      <div class="cards-container">
-        <!-- Video Games -->
+      <div class="cards-container" id="cards-container">
+        <!-- Example Cards -->
         <div class="gift-card">
-          <img src="imagenes/steam.png" alt="Steam Gift Card">
+          <img src="imagenes/steam.jpg" alt="Steam Gift Card">
           <h3>Steam</h3>
           <p>$20 - $200</p>
-          <button onclick="alert('Added Steam card to cart')">Buy</button>
+          <button onclick="selectAmount('Steam',[20,50,100,200])">Buy</button>
         </div>
         <div class="gift-card">
-          <img src="imagenes/xbox.png" alt="Xbox Gift Card">
+          <img src="imagenes/xbox.jpg" alt="Xbox Gift Card">
           <h3>Xbox</h3>
           <p>$10 - $150</p>
-          <button onclick="alert('Added Xbox card to cart')">Buy</button>
+          <button onclick="selectAmount('Xbox',[10,25,50,100,150])">Buy</button>
         </div>
         <div class="gift-card">
-          <img src="imagenes/playstation.png" alt="PlayStation Gift Card">
-          <h3>PlayStation</h3>
-          <p>$20 - $100</p>
-          <button onclick="alert('Added PlayStation card to cart')">Buy</button>
-        </div>
-        <div class="gift-card">
-          <img src="imagenes/nintendo.png" alt="Nintendo eShop Gift Card">
-          <h3>Nintendo eShop</h3>
-          <p>$10 - $100</p>
-          <button onclick="alert('Added Nintendo card to cart')">Buy</button>
-        </div>
-
-        <!-- Streaming Video -->
-        <div class="gift-card">
-          <img src="imagenes/netflix.png" alt="Netflix Gift Card">
+          <img src="imagenes/netflix.jpg" alt="Netflix Gift Card">
           <h3>Netflix</h3>
           <p>$15 - $100</p>
-          <button onclick="alert('Added Netflix card to cart')">Buy</button>
+          <button onclick="selectAmount('Netflix',[15,25,50,100])">Buy</button>
         </div>
         <div class="gift-card">
-          <img src="imagenes/disney.png" alt="Disney+ Gift Card">
-          <h3>Disney+</h3>
-          <p>$20 - $100</p>
-          <button onclick="alert('Added Disney+ card to cart')">Buy</button>
-        </div>
-        <div class="gift-card">
-          <img src="imagenes/hbo.png" alt="HBO Max Gift Card">
-          <h3>HBO Max</h3>
-          <p>$15 - $100</p>
-          <button onclick="alert('Added HBO Max card to cart')">Buy</button>
-        </div>
-        <div class="gift-card">
-          <img src="imagenes/googleplay.png" alt="Google Play Gift Card">
-          <h3>Google Play</h3>
-          <p>$10 - $100</p>
-          <button onclick="alert('Added Google Play card to cart')">Buy</button>
-        </div>
-
-        <!-- Music Platforms -->
-        <div class="gift-card">
-          <img src="imagenes/itunes.png" alt="iTunes Gift Card">
-          <h3>iTunes</h3>
-          <p>$15 - $150</p>
-          <button onclick="alert('Added iTunes card to cart')">Buy</button>
-        </div>
-        <div class="gift-card">
-          <img src="imagenes/spotify.png" alt="Spotify Gift Card">
+          <img src="imagenes/spotify.jpeg" alt="Spotify Gift Card">
           <h3>Spotify</h3>
           <p>$10 - $100</p>
-          <button onclick="alert('Added Spotify card to cart')">Buy</button>
+          <button onclick="selectAmount('Spotify',[10,25,50,100])">Buy</button>
         </div>
         <div class="gift-card">
-          <img src="imagenes/pandora.png" alt="Pandora Gift Card">
-          <h3>Pandora</h3>
+          <img src="imagenes/play.jpg" alt="PlayStation Gift Card">
+          <h3>PlayStation</h3>
           <p>$10 - $100</p>
-          <button onclick="alert('Added Pandora card to cart')">Buy</button>
-        </div>
-        <div class="gift-card">
-          <img src="imagenes/tidal.png" alt="Tidal Gift Card">
-          <h3>Tidal</h3>
+          <button onclick="selectAmount('PlayStation',[10,25,50,100])">Buy</button>
+      </div>
+      <div class="gift-card">
+          <img src="imagenes/disney.jpeg" alt="Disney Gift Card">
+          <h3>Disney</h3>
           <p>$10 - $100</p>
-          <button onclick="alert('Added Tidal card to cart')">Buy</button>
-        </div>
+          <button onclick="selectAmount('Disney',[10,25,50,100])">Buy</button>
+      </div>
+<div class="gift-card">
+          <img src="imagenes/hbo.jpg" alt="HBO MAX Gift Card">
+          <h3>HBO MAX</h3>
+          <p>$10 - $100</p>
+          <button onclick="selectAmount('HBO MAX',[10,25,50,100])">Buy</button>
+      </div>
+<div class="gift-card">
+          <img src="imagenes/google.jpeg" alt="Google Play Gift Card">
+          <h3>Google Play</h3>
+          <p>$10 - $100</p>
+          <button onclick="selectAmount('Google Play',[10,25,50,100])">Buy</button>
+      </div>
+<div class="gift-card">
+          <img src="imagenes/nintendo.jpg" alt="Nintendo Gift Card">
+          <h3>Nintendo</h3>
+          <p>$10 - $100</p>
+          <button onclick="selectAmount('Nintendo',[10,25,50,100])">Buy</button>
+      </div>
+<div class="gift-card">
+          <img src="imagenes/itunes.jpeg" alt="Itunes Gift Card">
+          <h3>Itunes</h3>
+          <p>$10 - $100</p>
+          <button onclick="selectAmount('Itunes',[10,25,50,100])">Buy</button>
       </div>
 
       <div class="back-btn">
@@ -196,5 +168,79 @@
       </div>
     </section>
   </main>
+
+  <!-- Payment screen -->
+  <div class="processing" id="processing-screen">
+    <div class="loader"></div>
+    <h2>Processing payment...</h2>
+  </div>
+
+  <!-- Modal Cart -->
+  <div class="modal" id="cart-modal">
+    <div class="modal-content">
+      <h2>Your Cart</h2>
+      <div id="cart-items"></div>
+      <button class="checkout" onclick="checkout()">Checkout</button>
+      <button class="cancel" onclick="closeCart()">Cancel</button>
+    </div>
+  </div>
+
+  <script>
+    let cart = [];
+
+    function selectAmount(name, amounts){
+      let choice = prompt(`Select amount for ${name}: ${amounts.join(', ')}`);
+      if(choice && amounts.includes(parseInt(choice))){
+        cart.push({name, amount: parseInt(choice)});
+        updateCart();
+        alert(`${name} card of $${choice} added to cart`);
+      }else if(choice){
+        alert("Invalid amount selected!");
+      }
+    }
+
+    function updateCart(){
+      document.getElementById('cart-count').textContent = cart.length;
+    }
+
+    function openCart(){
+      const cartItems = document.getElementById('cart-items');
+      cartItems.innerHTML = "";
+      if(cart.length===0){
+        cartItems.innerHTML = "<p>No items in cart</p>";
+      }else{
+        cart.forEach(item=>{
+          const div=document.createElement('div');
+          div.classList.add('cart-item');
+          div.textContent=`${item.name} - $${item.amount}`;
+          cartItems.appendChild(div);
+        });
+      }
+      document.getElementById('cart-modal').style.display='flex';
+    }
+
+    function closeCart(){
+      document.getElementById('cart-modal').style.display='none';
+    }
+
+    function checkout(){
+      if(cart.length===0){alert("Your cart is empty!");return;}
+      let confirmPay = confirm("Are you sure you want to pay your order?");
+      if(confirmPay){
+        closeCart();
+        document.getElementById('catalog-screen').style.display='none';
+        document.getElementById('processing-screen').style.display='flex';
+
+        setTimeout(()=>{
+          document.getElementById('processing-screen').style.display='none';
+          document.getElementById('catalog-screen').style.display='flex';
+          alert("Purchase completed successfully!");
+          cart=[];updateCart();
+        },3000);
+      }else{
+        closeCart();
+      }
+    }
+  </script>
 </body>
 </html>
