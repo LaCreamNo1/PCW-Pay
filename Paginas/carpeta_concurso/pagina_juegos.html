@@ -1,10 +1,194 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>GAMES</title>
+<meta charset="UTF-8">
+<title>GAMES</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: #87CEEB;
+        display: flex;
+    }
+
+    /* Panel de imágenes a la izquierda */
+   .image-panel {
+    width: 250px;
+    height: 100vh;
+    background-color:  #FFB347; /* peachpuff: durazno claro que combina con celeste */
+    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+    .image-panel img {
+        width: 100%;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        display: none; /* Oculto por defecto */
+    }
+
+    /* Contenedor del formulario */
+    .form-container-wrapper {
+        flex: 1; /* Ocupa todo el espacio restante */
+        display: flex;
+        justify-content: center; /* Centrar horizontalmente */
+        align-items: center;     /* Centrar verticalmente */
+        padding: 20px;
+    }
+
+    .form-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        width: 400px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .form-container label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    .form-container input, 
+    .form-container select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .form-container button {
+        margin-top: 15px;
+        padding: 10px;
+        width: 100%;
+        border: none;
+        border-radius: 5px;
+        background-color: red;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
+
+    .form-container button:hover {
+        transform: scale(1.05);
+    }
+
+    @media(max-width:900px){
+        body {
+            flex-direction: column;
+            align-items: center;
+        }
+        .image-panel {
+            width: 90%;
+            height: 300px;
+            margin-bottom: 20px;
+        }
+        .form-container-wrapper {
+            width: 90%;
+            justify-content: center;
+        }
+        .form-container {
+            width: 100%;
+        }
+    }
+</style>
 </head>
 <body>
-    <h1>TARGETAS DE REGALO PARA VIDEO JUEGOS</h1>
+
+<!-- Panel de imágenes a la izquierda -->
+<div class="image-panel">
+   <img src="spotify.jpeg" alt="Spotify"> 
+    <img src="itunes.jpeg" alt="Itunes">
+    <img src="netflix.jpg" alt="Netflix">
+    <img src="steam.jpg" alt="Steam">
+    <img src="disney.jpeg" alt="Disney">
+    <img src="google.jpeg" alt="Google">
+    <img src="hbo.jpg" alt="hbo">
+    <img src="play.jpg" alt="PlayStation">
+</div>
+
+<!-- Wrapper para centrar el formulario -->
+<div class="form-container-wrapper">
+    <div class="form-container">
+        <h1>GIFT CARDS FOR VIDEO GAMES</h1>
+
+        <label for="wallet">WALLET ADDRESS:</label>
+        <input type="text" id="wallet" placeholder="Enter your wallet address">
+
+        <label for="code">ACCESS CODE:</label>
+        <input type="text" id="code" placeholder="Enter access code">
+
+        <label for="platform">Platform:</label>
+        <select id="platform">
+            <option value="steam">Steam</option>
+            <option value="playstation">PlayStation</option>
+            <option value="xbox">Xbox</option>
+            <option value="nintendo">Nintendo eShop</option>
+            <option value="epicgames">Epic Games</option>
+            <option value="origin">Origin</option>
+            <option value="gog">GOG</option>
+            <option value="ubisoft">Ubisoft Store</option>
+            <option value="riot">Riot Games</option>
+            <option value="blizzard">Blizzard Battle.net</option>
+        </select>
+
+        <label for="currency">Currency:</label>
+        <select id="currency">
+            <option value="USD">USD - US Dollar</option>
+            <option value="MXN">MXN - Mexican Peso</option>
+            <option value="EUR">EUR - Euro</option>
+            <option value="GBP">GBP - British Pound</option>
+            <option value="JPY">JPY - Japanese Yen</option>
+            <option value="CAD">CAD - Canadian Dollar</option>
+            <option value="AUD">AUD - Australian Dollar</option>
+            <option value="CHF">CHF - Swiss Franc</option>
+            <option value="CNY">CNY - Chinese Yuan</option>
+            <option value="INR">INR - Indian Rupee</option>
+        </select>
+
+        <label for="price">Price:</label>
+        <select id="price">
+            <option value="10">$10</option>
+            <option value="15">$15</option>
+            <option value="20">$20</option>
+            <option value="25">$25</option>
+            <option value="30">$30</option>
+            <option value="35">$35</option>
+            <option value="40">$40</option>
+            <option value="45">$45</option>
+            <option value="50">$50</option>
+            <option value="60">$60</option>
+        </select>
+
+        <label for="message">Message:</label>
+        <input type="text" id="message" placeholder="Optional message">
+
+        <button onclick="alert('Purchase completed!')">Buy</button>
+    </div>
+</div>
+
+<script>
+    // Carrusel automático de imágenes
+    let index = 0;
+    const images = document.querySelectorAll('.image-panel img');
+
+    function showNextImage() {
+        images.forEach(img => img.style.display = 'none');
+        images[index].style.display = 'block';
+        index = (index + 1) % images.length;
+    }
+
+    showNextImage(); // mostrar la primera imagen
+    setInterval(showNextImage, 2000); // cambiar cada 2 segundos
+</script>
+
 </body>
 </html>
