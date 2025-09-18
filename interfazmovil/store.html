@@ -67,7 +67,7 @@
       display:flex;align-items:center;justify-content:center;
     }
 
-    /* Modal */
+    /* Modal General */
     .modal{
       position:fixed;top:0;left:0;width:100%;height:100%;
       background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;
@@ -182,7 +182,7 @@
       </div>
     </section>
   </main>
-HEAD
+
   <!-- Payment screen -->
   <div class="processing" id="processing-screen">
     <div class="loader"></div>
@@ -199,13 +199,19 @@ HEAD
     </div>
   </div>
 
+  <!-- Modal para pedir URL de cartera -->
+  <div class="modal" id="wallet-modal">
+    <div class="modal-content">
+      <h2>Enter your Wallet URL</h2>
+      <input type="text" id="wallet-url" placeholder="https://wallet.example.com" style="width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;">
+      <button class="checkout" onclick="confirmPurchase()">Confirm Purchase</button>
+      <button class="cancel" onclick="closeWalletModal()">Cancel</button>
+    </div>
+  </div>
+
   <script>
   // Carrito
   let cart = [];
-
-  // Cuentas fijas
-  const receiverUrl = "https://ilp.interledger-test.dev/peperecibe";       // Receptor final
-  const intermediaryUrl = "https://ilp.interledger-test.dev/c884c441";    // Intermediario
 
   function selectAmount(name, amounts){
     let choice = prompt(`Select amount for ${name}: ${amounts.join(', ')}`);
@@ -216,15 +222,6 @@ HEAD
     }else if(choice){
       alert("Invalid amount selected!");
     }
-    fetch('ejecutar-script', {method: 'POST'})
-    .then(data=>
-    {
-      alert(data); 
-    })
-    .catch(error =>{
-      console.error('Error', error);
-    })
-
   }
 
   function updateCart(){
@@ -252,30 +249,49 @@ HEAD
   }
 
   async function checkout(){
-  if(cart.length === 0){
-    alert("Your cart is empty!");
-    return;
+    if(cart.length === 0){
+      alert("Your cart is empty!");
+      return;
+    }
+    // Mostrar modal para pedir la cartera
+    closeCart();
+    document.getElementById('wallet-modal').style.display = 'flex';
   }
 
-  // Calcular total de la compra
-  let total = cart.reduce((sum, item)=> sum + item.amount, 0);
+  function closeWalletModal(){
+    document.getElementById('wallet-modal').style.display = 'none';
+  }
 
-  // Mostrar pantalla de procesamiento
-  document.getElementById('catalog-screen').style.display = 'none';
-  document.getElementById('processing-screen').style.display = 'flex';
+  function confirmPurchase(){
+    let walletUrl = document.getElementById("wallet-url").value.trim();
+    if(walletUrl === ""){
+      alert("⚠️ Please enter your wallet URL to continue.");
+      return;
+    }
+    closeWalletModal();
 
-  // Simular un pequeño retraso de pago (2s)
-  setTimeout(() => {
-    alert("✅ Purchase completed successfully! Total: $" + total);
+    // Calcular total de la compra
+    let total = cart.reduce((sum, item)=> sum + item.amount, 0);
 
-    // Vaciar carrito automáticamente después de la compra
-    cart = [];
-    updateCart();
+    // Mostrar pantalla de procesamiento
+    document.getElementById('catalog-screen').style.display = 'none';
+    document.getElementById('processing-screen').style.display = 'flex';
 
-    // Regresar a la pantalla principal
-    document.getElementById('processing-screen').style.display = 'none';
-    document.getElementById('catalog-screen').style.display = 'flex';
-    closeCart();
-  }, 2000);
-}
-</script>
+    // Simular un pequeño retraso de pago (2s)
+    setTimeout(() => {
+      alert("✅ Purchase completed successfully!\nWallet: " + walletUrl + "\nTotal: $" + total);
+
+      // Vaciar carrito automáticamente después de la compra
+      cart = [];
+      updateCart();
+
+      // Regresar a la pantalla principal
+      document.getElementById('processing-screen').style.display = 'none';
+      document.getElementById('catalog-screen').style.display = 'flex';
+      closeCart();
+    }, 2000);
+  }
+  </script>
+
+</body>
+</html>
