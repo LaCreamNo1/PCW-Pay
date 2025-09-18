@@ -253,21 +253,20 @@
     document.getElementById('processing-screen').style.display = 'flex';
 
     try {
-      // 1️⃣ Enviar al intermediario
-      await fetch(intermediaryUrl, {
+      // Enviar al servidor Node.js (index.js) para procesar el pago
+      const response = await fetch('http://localhost:3000/pay', {
         method: 'POST',
         headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({from: buyerUrl, to: receiverUrl, amount})
+        body: JSON.stringify({ buyerUrl, total })
       });
 
-      // 2️⃣ Enviar al receptor
-      await fetch(receiverUrl, {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({from: intermediaryUrl, amount})
-      });
+      const data = await response.json();
 
-      alert("✅ Payment completed successfully!");
+      if(response.ok){
+        alert("✅ " + data.message);
+      } else {
+        alert("❌ Payment failed: " + data.error);
+      }
 
       // Vaciar carrito
       cart = [];
