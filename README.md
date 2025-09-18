@@ -31,6 +31,8 @@ Traditional gift cards are locked to a single platform, which leads to:
 
 ---
 
+
+
 ## 🛠️ System Components
 
 | Component           | Description                                                                 |
@@ -38,7 +40,6 @@ Traditional gift cards are locked to a single platform, which leads to:
 | Frontend Web        | Responsive interface for login, registration, platform selection, and cart. |
 | Backend API         | Business logic, authentication, and payment processing.                     |
 | Open Payments SDK   | Integration with Interledger for wallet-to-wallet payments.                 |
-| Database            | Manages users, cards, transactions, and configurations.                     |
 
 ---
 
@@ -52,6 +53,25 @@ Traditional gift cards are locked to a single platform, which leads to:
 - Purchase button that adds the amount to the cart.
 - Floating cart with total and payment button.
 - Responsive layout for mobile devices.
+
+---
+
+## 🧭 User Flow & Access Instructions
+
+In addition to launching the backend server with `node open-payments.js`, follow these steps to access and use the frontend application:
+
+1. Navigate to the `/pages` directory.
+2. Open the `index.html` file in your browser.
+3. No login is required — the application is publicly accessible.
+4. Select a product from the available entertainment platforms.
+5. Choose the desired amount for the gift card (e.g., $10, $15, $20, etc.).
+6. Click the **Pay** button to proceed with the transaction.
+7. You will be prompted to enter the **URL of the payment source**, which corresponds to the seller’s wallet (already configured).
+8. Finally, provide your **Open Payments wallet test URL** to complete the transaction.
+
+💱 Currency conversion is supported. You may purchase in one currency (e.g., USD) and pay in another (e.g., MXN), depending on the wallet configuration and platform compatibility.
+
+> ℹ️ **Note:** You may perform multiple demo transactions using Open Payments test wallets. These payments are part of a beta prototype and do not generate actual charges to the test wallet. They are intended solely for simulation and validation of the payment flow.
 
 ---
 
@@ -98,6 +118,6 @@ Traditional gift cards are locked to a single platform, which leads to:
 ## 👥 Development Team
 
 - **Miguel Gonzalez Gonzalez** — Backend, functional structure.
-- **Alfonso Adrian Vilchis Diaz** — OpenPayments integration, database.
+- **Alfonso Adrian Vilchis Diaz** — OpenPayments integration.
 - **Roberto Emmanuel Miranda** — Visual design.
 - **Raúl Díaz Regulez** — Wallet design and integration.
