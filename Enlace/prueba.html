@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejemplo index.js</title>
+</head>
+<body>
+
+  <button onclick="activarJS()">Activar JS</button>
+
+  <script src="index.js"></script>
+  <script>
+    function activarJS() {
+      // Llamamos a una función que esté definida en index.js
+      if (typeof miFuncion === 'function') {
+        miFuncion();
+      } else {
+        console.error("No se encontró la función 'miFuncion' en index.js");
+      }
+    }
+  </script>
+</body>
+</html>

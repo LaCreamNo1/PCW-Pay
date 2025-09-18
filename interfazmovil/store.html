@@ -202,6 +202,15 @@
     }else if(choice){
       alert("Invalid amount selected!");
     }
+    fetch('ejecutar-script', {method: 'POST'})
+    .then(data=>
+    {
+      alert(data); 
+    })
+    .catch(error =>{
+      console.error('Error', error);
+    })
+
   }
 
   function updateCart(){
