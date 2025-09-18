@@ -1,7 +1,7 @@
 // Cuentas ficticias
 const accounts = {
-  sender: { name: "https://ilp.interledger-test.dev/pepeda", balance: 1000 },
-  intermediary: { name: "Wallet System", balance: 0 },
+  sender: { name: "https://ilp.interledger-test.dev/pepeda", balance: 0 },
+  intermediary: { name: "https://ilp.interledger-test.dev/c884c441", balance: 0 },
   receiver: { name: "https://ilp.interledger-test.dev/peperecibe", balance: 0 }
 };
 
