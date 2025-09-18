@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Digital Gift Cards Store</title>
+  <title>Digital Gift Cards Store - Catalog</title>
   <style>
     :root{
       --bg-gradient-1: #6dd5ed;
@@ -17,175 +17,91 @@
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%; background: linear-gradient(135deg,var(--bg-gradient-1),var(--bg-gradient-2));}
 
-    .screen{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-      overflow: hidden;
-    }
+    .screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;overflow:hidden;}
 
     .store-card{
-      width:100%;
-      max-width:500px;
-      border-radius:18px;
-      background:var(--card-bg);
-      box-shadow:0 10px 30px rgba(16,24,40,0.25);
-      padding:20px;
-      display:flex;
-      flex-direction:column;
-      gap:18px;
-      backdrop-filter: blur(6px);
-      max-height:90vh;
-      overflow-y: auto;
+      width:100%;max-width:500px;border-radius:18px;
+      background:var(--card-bg);box-shadow:0 10px 30px rgba(16,24,40,0.25);
+      padding:20px;display:flex;flex-direction:column;gap:18px;
+      backdrop-filter: blur(6px);max-height:90vh;overflow-y:auto;
+      position: relative;
     }
 
     h1{text-align:center;color:#0f172a;font-size:22px}
     p.lead{text-align:center;color:var(--muted);font-size:14px}
 
-    .cards-container{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-    }
+    .cards-container{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 
     .gift-card{
-      background:var(--glass);
-      border-radius:12px;
-      padding:10px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      text-align:center;
-      transition:transform 0.25s, box-shadow 0.25s;
-      cursor:pointer;
+      background:var(--glass);border-radius:12px;padding:10px;
+      display:flex;flex-direction:column;align-items:center;text-align:center;
+      transition:transform 0.25s, box-shadow 0.25s;cursor:pointer;
     }
-    .gift-card:hover{
-      transform:scale(1.05);
-      box-shadow:0 8px 20px rgba(0,0,0,0.15);
-    }
+    .gift-card:hover{transform:scale(1.05);box-shadow:0 8px 20px rgba(0,0,0,0.15);}
     .gift-card img{width:80px;height:80px;object-fit:contain;margin-bottom:8px;}
     .gift-card h3{font-size:16px;color:#0f172a;margin-bottom:6px;}
     .gift-card p{font-size:13px;color:var(--muted);margin-bottom:8px;}
     .gift-card button{
-      padding:8px 12px;
-      border:none;
-      border-radius:8px;
+      padding:8px 12px;border:none;border-radius:8px;
       background:linear-gradient(90deg,var(--accent),#ff9966);
-      color:white;
-      font-weight:600;
-      cursor:pointer;
-      transition:all 0.25s;
-      animation: pulse 2s infinite;
+      color:white;font-weight:600;cursor:pointer;transition:all 0.25s;
     }
-    .gift-card button:hover{transform:scale(1.05);}
+    .gift-card button:hover{transform:scale(1.1);}
 
-    @keyframes pulse {
-      0%{box-shadow:0 0 0 0 rgba(255,122,89,0.7);}
-      70%{box-shadow:0 0 0 10px rgba(255,122,89,0);}
-      100%{box-shadow:0 0 0 0 rgba(255,122,89,0);}
-    }
-
-    /* Floating Cart */
+    /* Cart Icon */
     .cart-icon{
-      position:fixed;
-      top:20px;
-      right:20px;
-      background:white;
-      border-radius:50%;
-      width:50px;
-      height:50px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      box-shadow:0 4px 10px rgba(0,0,0,0.2);
-      transition:transform 0.25s;
-      z-index:100;
+      position:absolute;top:15px;right:15px;
+      background:var(--accent);color:white;
+      border-radius:50%;width:40px;height:40px;
+      display:flex;align-items:center;justify-content:center;
+      font-weight:bold;cursor:pointer;
+      transition:transform 0.3s;
     }
     .cart-icon:hover{transform:scale(1.1);}
-    .cart-icon span{
-      position:absolute;
-      top:5px;
-      right:5px;
-      background:var(--accent);
-      color:white;
-      font-size:12px;
-      font-weight:bold;
-      border-radius:50%;
-      padding:2px 6px;
+    .cart-count{
+      position:absolute;top:5px;right:5px;
+      background:white;color:var(--accent);
+      font-size:12px;font-weight:bold;
+      border-radius:50%;width:18px;height:18px;
+      display:flex;align-items:center;justify-content:center;
     }
 
-    /* Cart Panel */
-    .cart-panel{
-      position:fixed;
-      top:0;
-      right:-400px;
-      width:300px;
-      height:100%;
-      background:white;
-      box-shadow:-2px 0 10px rgba(0,0,0,0.2);
-      padding:20px;
-      transition:right 0.4s;
-      z-index:99;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
+    /* Modal */
+    .modal{
+      position:fixed;top:0;left:0;width:100%;height:100%;
+      background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;
+      z-index:999;
     }
-    .cart-panel.open{right:0;}
-    .cart-items{flex:1;overflow-y:auto;}
-    .cart-items p{margin:5px 0;font-size:14px;}
-    .checkout-btn{
-      padding:12px;
-      background:linear-gradient(90deg,var(--accent),#ff9966);
-      color:white;
-      border:none;
-      border-radius:10px;
-      font-weight:bold;
-      cursor:pointer;
+    .modal-content{
+      background:white;border-radius:16px;padding:20px;
+      width:90%;max-width:400px;max-height:80vh;overflow-y:auto;
     }
+    .modal-content h2{text-align:center;margin-bottom:10px;}
+    .cart-item{display:flex;justify-content:space-between;margin:6px 0;color:#333}
+    .modal-content button{margin-top:10px;width:100%;padding:10px;border:none;border-radius:10px;font-weight:bold;cursor:pointer;}
+    .checkout{background:linear-gradient(90deg,var(--accent),#ff9966);color:white;}
+    .cancel{background:#ccc;color:#333;}
 
-    /* Payment overlay */
-    .overlay{
-      position:fixed;
-      top:0;left:0;width:100%;height:100%;
-      background:rgba(0,0,0,0.6);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      z-index:200;
-    }
-    .overlay.show{display:flex;}
-    .processing{
-      background:white;
-      padding:30px;
-      border-radius:12px;
-      text-align:center;
-      animation: fadeIn 0.5s;
-    }
-    @keyframes fadeIn{
-      from{opacity:0;transform:scale(0.9);}
-      to{opacity:1;transform:scale(1);}
-    }
-    .loader{
-      border:6px solid #f3f3f3;
-      border-top:6px solid var(--accent);
-      border-radius:50%;
-      width:50px;height:50px;
-      margin:20px auto;
-      animation: spin 1s linear infinite;
-    }
-    @keyframes spin{100%{transform:rotate(360deg);}}
+    /* Payment screen */
+    .processing{display:none;flex-direction:column;align-items:center;justify-content:center;gap:20px;height:100vh;color:white;}
+    .loader{border:6px solid rgba(255,255,255,0.3);border-top:6px solid white;border-radius:50%;width:50px;height:50px;animation:spin 1s linear infinite;}
+    @keyframes spin{100%{transform:rotate(360deg)}}
+
+    @media(max-width:380px){.cards-container{grid-template-columns:1fr;}}
   </style>
 </head>
 <body>
-  <main class="screen">
+  <main class="screen" id="catalog-screen">
     <section class="store-card">
+      <div class="cart-icon" onclick="openCart()">
+        🛒
+        <div class="cart-count" id="cart-count">0</div>
+      </div>
       <h1>Digital Gift Cards</h1>
-      <p class="lead">Select your favorite platform and add it to your cart.</p>
+      <p class="lead">Browse and purchase your favorite gift cards from games, video, and music platforms!</p>
 
-      <div class="cards-container">
+      <div class="cards-container" id="cards-container">
+        <!-- Example Cards -->
         <div class="gift-card">
           <img src="imagenes/steam.png" alt="Steam Gift Card">
           <h3>Steam</h3>
@@ -198,77 +114,98 @@
           <p>$10 - $150</p>
           <button onclick="selectAmount('Xbox',[10,25,50,100,150])">Buy</button>
         </div>
+        <div class="gift-card">
+          <img src="imagenes/netflix.png" alt="Netflix Gift Card">
+          <h3>Netflix</h3>
+          <p>$15 - $100</p>
+          <button onclick="selectAmount('Netflix',[15,25,50,100])">Buy</button>
+        </div>
+        <div class="gift-card">
+          <img src="imagenes/spotify.png" alt="Spotify Gift Card">
+          <h3>Spotify</h3>
+          <p>$10 - $100</p>
+          <button onclick="selectAmount('Spotify',[10,25,50,100])">Buy</button>
+        </div>
+      </div>
+
+      <div class="back-btn">
+        <button onclick="window.location.href='index.html'">← Back to Home</button>
       </div>
     </section>
   </main>
 
-  <!-- Cart Icon -->
-  <div class="cart-icon" onclick="toggleCart()">
-    🛒
-    <span id="cart-count">0</span>
+  <!-- Payment screen -->
+  <div class="processing" id="processing-screen">
+    <div class="loader"></div>
+    <h2>Processing payment...</h2>
   </div>
 
-  <!-- Cart Panel -->
-  <div class="cart-panel" id="cartPanel">
-    <h2>Your Cart</h2>
-    <div class="cart-items" id="cartItems"></div>
-    <button class="checkout-btn" onclick="checkout()">Checkout</button>
-  </div>
-
-  <!-- Payment Overlay -->
-  <div class="overlay" id="overlay">
-    <div class="processing" id="processingBox">
-      <h3>Processing Payment...</h3>
-      <div class="loader"></div>
+  <!-- Modal Cart -->
+  <div class="modal" id="cart-modal">
+    <div class="modal-content">
+      <h2>Your Cart</h2>
+      <div id="cart-items"></div>
+      <button class="checkout" onclick="checkout()">Checkout</button>
+      <button class="cancel" onclick="closeCart()">Cancel</button>
     </div>
   </div>
 
-<script>
-  let cart = [];
+  <script>
+    let cart = [];
 
-  function selectAmount(name, amounts){
-    let amount = prompt(`Select amount for ${name}: ${amounts.join(', ')}`);
-    amount = parseInt(amount);
-    if(amounts.includes(amount)){
-      cart.push({name, amount});
-      updateCart();
-      alert(`${name} card $${amount} added to cart!`);
-    }else{
-      alert("Invalid amount.");
-    }
-  }
-
-  function updateCart(){
-    document.getElementById("cart-count").textContent = cart.length;
-    let itemsDiv = document.getElementById("cartItems");
-    itemsDiv.innerHTML = "";
-    cart.forEach((item,i)=>{
-      itemsDiv.innerHTML += `<p>${item.name} - $${item.amount}</p>`;
-    });
-  }
-
-  function toggleCart(){
-    document.getElementById("cartPanel").classList.toggle("open");
-  }
-
-  function checkout(){
-    if(cart.length === 0){
-      alert("Your cart is empty!");
-      return;
-    }
-    if(confirm("Are you sure you want to pay for your order?")){
-      document.getElementById("overlay").classList.add("show");
-      setTimeout(()=>{
-        document.getElementById("overlay").classList.remove("show");
-        cart = [];
+    function selectAmount(name, amounts){
+      let choice = prompt(`Select amount for ${name}: ${amounts.join(', ')}`);
+      if(choice && amounts.includes(parseInt(choice))){
+        cart.push({name, amount: parseInt(choice)});
         updateCart();
-        alert("Purchase successful!");
-        window.location.reload();
-      },3000);
-    }else{
-      document.getElementById("cartPanel").classList.remove("open");
+        alert(`${name} card of $${choice} added to cart`);
+      }else if(choice){
+        alert("Invalid amount selected!");
+      }
     }
-  }
-</script>
+
+    function updateCart(){
+      document.getElementById('cart-count').textContent = cart.length;
+    }
+
+    function openCart(){
+      const cartItems = document.getElementById('cart-items');
+      cartItems.innerHTML = "";
+      if(cart.length===0){
+        cartItems.innerHTML = "<p>No items in cart</p>";
+      }else{
+        cart.forEach(item=>{
+          const div=document.createElement('div');
+          div.classList.add('cart-item');
+          div.textContent=`${item.name} - $${item.amount}`;
+          cartItems.appendChild(div);
+        });
+      }
+      document.getElementById('cart-modal').style.display='flex';
+    }
+
+    function closeCart(){
+      document.getElementById('cart-modal').style.display='none';
+    }
+
+    function checkout(){
+      if(cart.length===0){alert("Your cart is empty!");return;}
+      let confirmPay = confirm("Are you sure you want to pay your order?");
+      if(confirmPay){
+        closeCart();
+        document.getElementById('catalog-screen').style.display='none';
+        document.getElementById('processing-screen').style.display='flex';
+
+        setTimeout(()=>{
+          document.getElementById('processing-screen').style.display='none';
+          document.getElementById('catalog-screen').style.display='flex';
+          alert("Purchase completed successfully!");
+          cart=[];updateCart();
+        },3000);
+      }else{
+        closeCart();
+      }
+    }
+  </script>
 </body>
 </html>
